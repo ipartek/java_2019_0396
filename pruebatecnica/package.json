@@ -1,0 +1,23 @@
+{
+  "title": "HTML5",
+  "name": "html5",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node_modules/.bin/gulp watch"
+  },
+  "description": "Ejercicios para repasar HTML CSS y JS",
+  "keywords": [
+    "css",
+    "sass",
+    "html",
+    "responsive",
+    "theme",
+    "template"
+  ],
+  "license": "MIT",
+  "author": "Ander Uraga Real",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-file-include": "^2.1.1"
+  }
+}

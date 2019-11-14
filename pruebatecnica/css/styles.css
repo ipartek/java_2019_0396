@@ -36,7 +36,11 @@ p{
     color: pink;
 }
 
-
+code {
+    color: red;
+    background-color: rgb(233, 229, 229);
+    font-family: monospace;
+}
 
 table{
     width: 50%;
