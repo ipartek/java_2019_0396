@@ -91,6 +91,27 @@ section{
 
 }
 
+nav{
+    background-color: #0099CC;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+}
+
+main{
+    margin-bottom: 50px;
+}
+
+footer{
+    position: fixed;
+    padding: 20px;
+    bottom: 0;
+    background-color: indigo;
+    width: 100%;
+}
+}
+
+
 .box{
 
     display: inline-block;
