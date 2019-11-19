@@ -14,20 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 public class CalculadoraController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CalculadoraController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -35,19 +28,31 @@ public class CalculadoraController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//recibir parametros del formulario
+		//recibir parametros del formulario, siempre formato String
 		String num1 = request.getParameter("op1");
-		String nume2 = request.getParameter("op2");
+		String num2 = request.getParameter("op2");
 		
 		
-		//realizar calculos
-		
-		
-		//enviar datos a la vista
-		request.setAttribute("resultado", "pepeppeepepepepepepepep");
-		
-		//ir a vista
-		request.getRequestDispatcher("resultado.jsp").forward(request, response);
+		try {
+			//realizar calculos
+			int resultado = Integer.parseInt(num1) + Integer.parseInt(num2);  
+			
+			
+			//enviar datos a la vista
+			request.setAttribute("op1", num1 );
+			request.setAttribute("op2", num2 );
+			request.setAttribute("resultado", resultado );
+			
+		}catch (Exception e) {
+			request.setAttribute("resultado", 0 );
+			request.setAttribute("mensaje", "Lo sentimos pero solo sabemos sumar numeros" );
+			
+		}finally {
+			
+			//ir a vista
+			request.getRequestDispatcher("resultado.jsp").forward(request, response);
+			
+		}	
 		
 		
 	}
