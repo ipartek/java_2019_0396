@@ -18,27 +18,67 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		doAction(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doAction(request, response);		
+	}
+	
 
-		String nombre = request.getParameter("usuario");
+	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String vista = "";
 		
-		if ( "admin".equalsIgnoreCase(nombre)) {
+		//1. recibir parametros
+		String usuario    = request.getParameter("usuario");
+		String contrasena = request.getParameter("contrasena");
+		String idioma     = request.getParameter("idioma");
+		String recuerdame = request.getParameter("recuerdame");
+		
+		
+		//2. logica de negocio
+		
+		if ( "admin".equalsIgnoreCase(usuario) && 
+		     "admin".equalsIgnoreCase(contrasena)
+		 ) {
 			
-			request.getRequestDispatcher("login-exito.jsp").forward(request, response);
+			String mensaje = "";
+			
+			switch (idioma) {
+			case "es":
+				mensaje = ( recuerdame == null )?"BienVenido amigo":"BienVenido amigo tu seras recordato";
+				break;
+			case "eu":
+				mensaje = ( recuerdame == null )?"Ongietorri Txo":"Ongietorri Txo gogoratua izango zara";
+				break;	
+			case "en":
+				mensaje = ( recuerdame == null )?"Wellcome folk":"Wellcome folk you will remenber forevever and ever";
+				break;	
+
+			default:
+				break;
+			}
+			
+			request.setAttribute("mensaje", mensaje);
+			vista = "login-exito.jsp";			
+			
 			
 		}else {
 			
-			request.setAttribute("mensaje", "lorem ipsum.........");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.setAttribute("mensaje", "Credenciales Incorrectas, por favor prueba de nuevo");
+			vista = "login.jsp";
 		}
+		
+		// ir a JSP
+		request.getRequestDispatcher(vista).forward(request, response);
 
 		
+		
 	}
+
+
 
 }

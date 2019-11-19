@@ -1,16 +1,21 @@
-hola
-esto es HTML
+<%@include file="includes/cabecera.jsp" %>
+<%@include file="includes/navegacion.jsp" %>
 
-<%
-	// java 
-	out.print("<p>esto es JAVA</p>");
+<main>
+	<%
+		// java 
+		out.print("<p>esto es JAVA</p>");
+	
+	%>
+	
+	<a href="login.jsp">Login</a>
+	
+	<a href="calculadora.jsp">Calculadora</a>
+	
+	
+	<a href="kaixo?nombre=pepe">Saludar a Pepe</a>
+	<a href="kaixo?nombre=Maria">Saludar a Maria Antoñeta</a>
 
-%>
+</main>
 
-<a href="login.jsp">Login</a>
-
-<a href="calculadora.jsp">Calculadora</a>
-
-
-<a href="kaixo?nombre=pepe">Saludar a Pepe</a>
-<a href="kaixo?nombre=Maria">Saludar a Maria Antoñeta</a>
+<%@include file="includes/pie.jsp" %>	
