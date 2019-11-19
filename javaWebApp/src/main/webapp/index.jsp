@@ -1,3 +1,5 @@
+<% String titulo = "WebApp"; %>
+
 <%@include file="includes/cabecera.jsp" %>
 <%@include file="includes/navegacion.jsp" %>
 
