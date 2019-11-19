@@ -3,9 +3,10 @@
 <%
 	//recibir atributos del controlador
 	String mensaje = (String)request.getAttribute("mensaje");	
+	String simbolo = (String)request.getAttribute("simbolo");
 	String op1 = (String)request.getAttribute("op1");
 	String op2 = (String)request.getAttribute("op2");
-	int resultado = (int)request.getAttribute("resultado");
+	float resultado = (float)request.getAttribute("resultado");
 	
 	
 	if (mensaje != null) {
@@ -15,7 +16,7 @@
 
 <% }else { %>
 
-	<p>El resultado es de sumar <%=op1%> mas <%=op2%> es igual a <%=resultado%></p>
+	<p>El resultado  <%=op1%> <%=simbolo %> <%=op2%> = <%=resultado%></p>
 
 <% } // final del if %>	
 

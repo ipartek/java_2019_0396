@@ -29,14 +29,41 @@ public class CalculadoraController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//recibir parametros del formulario, siempre formato String
+		String op = request.getParameter("op");
 		String num1 = request.getParameter("op1");
-		String num2 = request.getParameter("op2");
+		String num2 = request.getParameter("op2");		
 		
 		
 		try {
 			//realizar calculos
-			int resultado = Integer.parseInt(num1) + Integer.parseInt(num2);  
+			float n1 = Float.parseFloat(num1);
+			float n2 = Float.parseFloat(num2);
+			float resultado = 0;
 			
+			switch (op) {
+			case "1":
+				resultado = n1 + n2;
+				request.setAttribute("simbolo", "+" );
+				break;
+			case "2":
+				resultado = n1 - n2;
+				request.setAttribute("simbolo", "-" );
+				break;
+			case "3":
+				resultado = n1 * n2;
+				request.setAttribute("simbolo", "*" );
+				break;
+			case "4":				
+				request.setAttribute("simbolo", "/" );
+				if ( n2 == 0 ) {
+					request.setAttribute("mensaje", "Division entre cero es Infinito" );
+				}else {
+					resultado = n1 / n2;
+				}					
+				break;				
+			default:
+				break;
+			}
 			
 			//enviar datos a la vista
 			request.setAttribute("op1", num1 );
