@@ -12,7 +12,7 @@
 /*
     1. reset
     2. @keyframes
-    3. TODAS etiquetas estilos generales
+    3. TODAS etiquetas estilos generales - normalizar
     4. Layouts
     5. clases 
     6. ids cosas mas espeficicas
@@ -22,17 +22,12 @@
 */
 
 
-/* reset basico para eliminar estilos de todos los browser - user-agent 
-*{
-    margin: 0;
-    padding: 0;
-}
-*/
+@import url("reset.css");
+@import url("impresora.css") print;
+@import url("normalize.css");
 
-body{
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-   
+body{    
+    font-family: Arial, sans-serif;   
 }
 
 h1{
@@ -159,6 +154,7 @@ footer{
 }
 
 .parallax h1{    
+	margin-top: 0;
     padding-top: 4em;
 }
 .parallax h2{
