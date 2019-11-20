@@ -16,6 +16,7 @@
     4. Layouts
     5. clases 
     6. ids cosas mas espeficicas
+    7. fontawesome
     
 
 */
@@ -186,6 +187,14 @@ footer{
     height: 150px;
     background-color: #0099CC;  
     animation: animacion-redondeo 3s infinite alternate;    
+}
+
+
+/* fontawesome */
+
+.fa-eye{
+	color: red;
+	font-size: 4em;
 }
 
 

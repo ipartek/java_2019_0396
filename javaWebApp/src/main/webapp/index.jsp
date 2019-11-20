@@ -15,7 +15,10 @@
 
 
 	
-            <h2>Alumn@s Ipartek</h2>        
+            <h2>Alumn@s Ipartek</h2>      
+            
+            <span class="fas fa-eye"></span>
+              
             <h3>Voluntario <span id="nombre">....inerHTML es esto...</span></h3>
             <button onclick="buscarVoluntario()">¿Quien Lee?</button>
 
