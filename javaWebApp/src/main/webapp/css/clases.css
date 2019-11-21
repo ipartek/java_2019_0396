@@ -2,6 +2,26 @@
 /*  clases 
 ***********************************************************************************/
 
+.boton-top{
+	border: 2px solid #000;
+    border-radius: 50%;
+    font-size: 2em;
+    position: fixed;
+    bottom: 25px;
+    font-weight: 600;
+    right: 25px;
+    text-decoration: none;
+    padding: 10px;    
+    color: #000;
+}
+
+
+.boton-top:hover{
+	background-color: #0099FF;
+	color: #FFF;
+}	
+	
+
 .box{
 
     display: inline-block;

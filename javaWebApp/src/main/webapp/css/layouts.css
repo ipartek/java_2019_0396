@@ -24,11 +24,11 @@ main{
 
 .footer-wrapper{
 	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 20px;
-	    
-	background-color: indigo;	
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    border-top: 2px solid #0099CC;
+    background-color: #b8c4c7;	
 }
 
 footer{
