@@ -1,6 +1,7 @@
 <div class="nav-wrapper">
 	<nav>
 		<a href="index.jsp">Inicio</a>
+		<a href="ejercicios/js/datatable.jsp">Datatable</a>
 	    <a href="ejercicios/css/animaciones.jsp">Animacion</a>
 	    <a href="ejercicios/css/basico.jsp">CSS Básico</a>
 	    <a href="ejercicios/html/box-model.jsp">Visualización</a>
