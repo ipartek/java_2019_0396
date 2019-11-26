@@ -1,0 +1,70 @@
+/**
+    Nuestro fichero de CSS 
+    Mobile First  -width < 576 px
+*/
+
+h1, h2, h3, h4, h5, h6{
+    text-transform: capitalize;
+}
+
+h1 {
+    color: teal;
+}
+
+ul, ol{
+    list-style: none;
+}
+
+
+main:before{
+    content: "Mobile First < 576";
+}
+
+.row div[class^="col"] {
+    border: 1px solid #333;
+    background-color: #DDD;
+    padding: 20px;
+}
+
+footer a{
+    color: #FFF;
+}
+footer a:hover{
+    color: #ffc107;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+
+    main:before{
+        content: "Small devices 576";
+    }
+
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+    main:before{
+        content: "Medium devices 768";
+    }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+
+    main:before{
+        content: "Large devices 992";
+    }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    
+    main:before{
+        content: "Extra Large devices 1200";
+    }
+
+ }

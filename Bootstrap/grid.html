@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>bootstrap4</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+        <a class="navbar-brand" href="index.html">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="grid.html">Grid System <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="componentes.html">Componentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="utilidades.html">Utilidades</a>
+            </li>                  
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <div class="row mb-5">
+            <div class="col">
+                <h1>Grid System</h1>
+                <p>Bootstrap funciona con un sistema de grillas a 12 columnas.</p>
+                <p>Usa internamente <b>flexbox</b> y es necesario que este dentro de un <code>.container</code></p>
+            </div>
+        </div>   
+        
+        <p>Disponemos de 12 columnas</p>
+        <div class="row mb-5">
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+            <div class="col">1</div>
+        </div>
+
+        <p>Dividimos la fila en 3 columnas para todos los breakpoints</p>
+        <div class="row p-2">            
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+        </div>
+
+        <p>Dividimos la fila en 3 columnas a partir de breakpoint SM</p>
+        <p>Inferior a SM la columna ocupa 12 columnas</p>
+        <div class="row p-2">           
+            <div class="col-sm">
+                <span class="d-block d-sm-none">12</span>
+                <span class="d-none d-sm-block">4</span>
+            </div>
+            <div class="col-sm">
+                <span class="d-block d-sm-none">12</span>
+                <span class="d-none d-sm-block">4</span>
+            </div>
+            <div class="col-sm">
+                <span class="d-block d-sm-none">12</span>
+                <span class="d-none d-sm-block">4</span>
+            </div>
+        </div>
+
+
+        <p>Disponemos de 5 breakpoints y tambien se puede indicar las columan que ocupan</p>
+        <div class="row mb-5">
+            <div class="col-xs-12 col-sm-4 col-lg-6">1º columna</div>
+            <div class="col-xs-12 col-sm-4 col-lg-6">2º columna</div>
+            <div class="col-xs-12 col-sm-4 col-lg-6">3º columna</div>
+        </div>
+
+        <h2>Alineación Vertical</h2>
+        <p>Ponemos al <code>div.row</code> un stilo en linea <code>style="min-height:10rem"</code> para darle una altura minima.</p>
+        <div class="row bg-warning" style="min-height:10rem">
+            <div class="col  align-self-start">Arriba</div>
+            <div class="col  align-self-center">Centrado</div>
+            <div class="col  align-self-end">Abajo</div>
+        </div>
+
+
+        <h2>Ordenacion</h2>
+        <p>Tenemos 6 divs en 2 columnas para Pcs, pero en movíl queremos que la 5º sea la la 1º</p>
+        <div class="row">
+            <div class="col-4 bg-primary order-lg-5">5</div>
+            <div class="col-4 order-lg-1">1</div>
+            <div class="col-4 order-lg-2">2</div>
+            <div class="col-4 order-lg-3">3</div>
+            <div class="col-4 order-lg-4">4</div>            
+            <div class="col-4 order-lg-6">6</div>
+        </div>
+
+
+        <h2>Offset</h2>
+        <p>Queremos 3 columnas que ocupen 3 espacios, pero de la 2º a la 3º debe quedar un hueco.</p>
+        <div class="row mb-5">
+            <div class="col">1</div>
+            <div class="col">2</div>
+            <div class="col offset-md-3">3</div>
+        </div>
+
+
+
+    </main>    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

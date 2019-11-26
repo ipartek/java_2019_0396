@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">    
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>bootstrap4</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="grid.html">Grid System <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="componentes.html">Componentes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="utilidades.html">Utilidades</a>
+                </li>                  
+                </ul>
+            </div><!-- .collapse .navbar-collapse -->
+        </div><!-- .container -->
+    </nav>
+
+
+    <main class="container">
+        <h1>bootstrap pagina ejemplo</h1>
+
+        <h2>Grid System</h2>
+
+        <p>Dividimos la fila en 3 columnas para todos los breakpoints</p>
+        <div class="row p-2">            
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+            <div class="col">
+                One of three columns
+            </div>
+        </div>
+
+        <p>Dividimos la fila en 3 columnas a partir de breakpoint SM</p>
+        <p>Inferior a SM la columna ocupa 12 columnas</p>
+        <div class="row p-2">           
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm">
+                One of three columns
+            </div>
+            <div class="col-sm">
+                One of three columns
+            </div>
+        </div>
+
+
+        <h2>Componentes</h2>  
+
+        <div class="alert alert-primary" role="alert">
+            Esto es una Alerta de color Azul!
+        </div>
+
+        <div class="alert alert-danger" role="alert">
+                Esto es una Alerta de color Rojo!
+        </div>
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <h2>Utilidades</h2>
+
+
+    </main>    
+
+    <footer class="bg-primary text-white">
+        <div class="container p-1 p-sm-3 clearfix">
+
+            <nav>
+                <ul class="p-0 d-flex flex-column flex-sm-row justify-content-between">
+                    <li class="text-center"><a href="#">enlace 1</a></li>
+                    <li class="text-center"><a href="#">enlace 2</a></li>
+                    <li class="text-center"><a href="#">enlace 3</a></li>
+                    <li class="text-center"><a href="#">enlace 4</a></li>
+                </ul>
+            </nav>
+
+            <a class="float-right" href="https://github.com/anderuraga/Bootstrap" target="_blank">
+                Boostrap Ejemplo <span class="fab fa-github"></span>
+            </a>
+        </div>        
+    </footer>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
