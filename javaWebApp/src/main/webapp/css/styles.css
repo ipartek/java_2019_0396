@@ -12,6 +12,7 @@
    4. Layouts
    5. clases 
    6. ids cosas mas espeficicas => custom.css    
+   7. @media querys
 
 */
 
@@ -23,6 +24,7 @@
 @import url("layouts.css");
 @import url("clases.css");
 @import url("custom.css");
+@import url("media.css");
 
 @import url("impresora.css") print; /* solo para impresoras */
 
