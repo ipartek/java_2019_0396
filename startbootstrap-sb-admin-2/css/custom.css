@@ -6,3 +6,21 @@ table img{
     width: 100px;
     height: 100px;    
 }
+
+input[type="text"]:valid, input[type="email"]:valid, input[type="url"]:valid{
+    
+    color: #6e707e;
+    background-color: #fff;
+    border-color: #bac8f3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+input[type="text"]:focus:invalid, input[type="email"]:focus:invalid, input[type="url"]:focus:invalid{
+    
+    color: #e74a3b;
+    background-color: #fff;
+    border-color: rgba(231, 73, 59, 0.63);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(231, 73, 59, 0.63);
+}
