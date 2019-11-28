@@ -1,0 +1,88 @@
+
+@import url(reset.css);
+@import url(normalize.css);
+
+
+* { 
+    box-sizing: border-box;
+}
+
+/* layouts
+*****************************/
+
+header{
+    background-color: hotpink;
+    min-height: 10vh;
+    padding: 5px;  
+}
+
+nav {
+    background-color: orange;
+    min-height: 10vh;
+}
+
+main{
+    background-color: khaki;
+    min-height: 80vh;
+    padding: 5vw 3vw;
+}
+
+footer{
+    background-color: hotpink;
+    min-height: 10vh;
+}
+
+/* poster
+*************************************/
+
+.poster_content{
+
+}
+
+.poster_content .poster:last-child{
+    margin-bottom: 0; 
+    background-color: teal;
+}    
+
+.poster{
+    background-color: indigo;
+    width: 100%;
+    min-height: 40vh;
+    margin-bottom: 20px;
+}
+
+/* media query para pantallas grandes
+*********************************************/
+
+@media screen and ( min-width: 576px ){
+
+    
+    .poster_content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    nav, main{
+        max-width: 1024px;
+        margin: auto;        
+    }
+
+    .poster{
+         /* 
+            width: 48%; 
+            margin-right: 2%;
+         */
+
+        width: calc( 50% - 20px ); 
+        margin-right: 20px;
+    }
+
+    .poster_content .poster:nth-child(even){
+        margin-right: 0;
+    }    
+
+    .poster_content .poster:last-child{
+        margin-bottom: 20px;       
+    } 
+
+}
