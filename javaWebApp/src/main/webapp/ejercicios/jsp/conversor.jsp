@@ -1,6 +1,10 @@
+<%@page import="com.ipartek.formacion.controller.ConversorController"%>
+
 <h1>Conversor</h1>
 
 <p>Conversor de metros a pies</p>	
+
+<p>1 metro equilave a <%=ConversorController.METROS_PIES%> pies</p>
 
 <p style="color:red;">${mensaje}</p>
 

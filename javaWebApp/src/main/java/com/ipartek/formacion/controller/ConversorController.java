@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/convertir")
 public class ConversorController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	public static final double METROS_PIES = 3.26;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,23 +41,33 @@ public class ConversorController extends HttpServlet {
 		
 		String metros = request.getParameter("metros");
 		
+		try {
 				
-		// logica negocio
-		
-		if ( "".equals(metros) ) {
+			// logica negocio
 			
-			request.setAttribute("mensaje", "Por favor dime los metros" );
+			if ( "".equals(metros) ) {				
+				request.setAttribute("mensaje", "Por favor dime los metros" );				
+			}else {
+						
+				float dMetros = Float.parseFloat(metros);
+				float resultado = (float) (dMetros * METROS_PIES);				
+				
+				request.setAttribute("resultado", resultado  );
+			}
+	
+		}catch( NumberFormatException e) {			
 			
-		}else {
-					
-			// enviar atributos a la JSP
+			request.setAttribute("mensaje", "Escribe un numero valido" );
+			
+		}catch (Exception e) {
+			
+			request.setAttribute("mensaje", "Perdon pero tenemos un fallo!!!!" );
+			
+		}finally {		
+			// ir a la JSP o vista
 			request.setAttribute("metros", metros );
-			request.setAttribute("resultado", 999f );
-		}
-		
-		
-		// ir a la JSP o vista
-		request.getRequestDispatcher("ejercicios/jsp/conversor.jsp").forward(request, response);
+			request.getRequestDispatcher("ejercicios/jsp/conversor.jsp").forward(request, response);
+		}	
 		
 		
 	}
