@@ -47,9 +47,59 @@ footer{
 .poster{
     background-color: indigo;
     width: 100%;
-    min-height: 40vh;
+    height: 80vh;
     margin-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
+
+.poster h2{
+    font-family:  'Alatsi', cursive;
+    color: #ffff00;
+    font-size: 3.9rem;     
+    text-transform: uppercase;
+    letter-spacing: 0;
+    text-align: center;
+    margin-top: 2%;
+}    
+
+.poster h3{
+    font-family:  'Alatsi', cursive;
+    color: rgb(255, 255, 0);
+}
+
+.poster blockquote{    
+    background-color: rgba(255,255,0,0.6);
+    margin: 0 6%;
+    padding: 2%;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    margin-top: 60%;
+}
+
+
+.poster footer{
+    position: absolute;
+    bottom: 0;
+    background-color: #FFF;
+}
+
+.poster footer p{
+} 
+
+.poster footer p.morado{
+} 
+
+
+.bg-hispter{
+    background-image: url(../img/hister_grey.png);
+}
+
+.bg-hispter-color{
+    background-image: url(../img/hister.png);
+}
+
 
 /* media query para pantallas grandes
 *********************************************/
@@ -68,14 +118,14 @@ footer{
     }
 
     .poster{
-         /* 
-            width: 48%; 
-            margin-right: 2%;
-         */
-
-        width: calc( 50% - 20px ); 
+        width: calc( 35% - 20px );
         margin-right: 20px;
+        height: 480px;
     }
+
+    .poster h2{
+        font-size: 3.2rem;
+    }    
 
     .poster_content .poster:nth-child(even){
         margin-right: 0;
