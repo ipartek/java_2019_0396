@@ -5,7 +5,7 @@
 
     
    <div class="parallax">
-       <h1>Ipartek HTML5</h1>
+       <h1>Ideas Feliz</h1>
        <h2>Wellcome to HTML</h2>               
    </div>
          
