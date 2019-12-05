@@ -14,6 +14,7 @@
 	    <a href="login.jsp">Login</a>	
 		<a href="calculadora.jsp">Calculadora</a>
 		<a href="ejercicios/jsp/conversor.jsp">Conversor</a>		
+		<a href="ejercicios/jsp/controladores.jsp">Request & Response</a>
 		<a href="kaixo?nombre=pepe">Saludar a Pepe</a>
 		<a href="kaixo?nombre=Maria">Saludar a Maria Antoñeta</a>
 	</nav>
