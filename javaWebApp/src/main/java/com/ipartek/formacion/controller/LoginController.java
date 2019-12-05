@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class LoginController
@@ -44,6 +45,14 @@ public class LoginController extends HttpServlet {
 		if ( "admin".equalsIgnoreCase(usuario) && 
 		     "admin".equalsIgnoreCase(contrasena)
 		 ) {
+			
+			
+			//recuperar session del usuario == browser
+			HttpSession session = request.getSession();
+			session.setAttribute("usuarioLogeado", "Administrador");
+			session.setAttribute("idioma", idioma );
+			session.setMaxInactiveInterval( -1 ); // nunca caduca
+			
 			
 			String mensaje = "";
 			
