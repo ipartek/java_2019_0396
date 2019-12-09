@@ -9,6 +9,7 @@
 %>
 
 <a href="perros">CRUD Perros</a>
+<a href="perros2">CRUD Perros con JSTL</a>
 
 
 <%@include file="includes/footer.jsp" %>
