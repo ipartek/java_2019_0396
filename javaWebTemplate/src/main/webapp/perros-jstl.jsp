@@ -29,10 +29,18 @@
 
 
 <c:if test="${empty perroEditar}">
-	No tenemos perro para Editar
+	No tenemos perro para Editar, vamos a inicializarlo
+	<jsp:useBean id="perroEditar" class="com.ipartek.formacion.model.pojo.Perro"></jsp:useBean>
+	
 </c:if>
 
-${perroEditar}
+<br>
+id=> ${perroEditar.id}
+<br>
+nombre=> ${perroEditar.nombre}
+<br>
+foto=> ${perroEditar.foto}
+<br>
 
 
 
