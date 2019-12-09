@@ -22,6 +22,8 @@ public class PerrosController extends HttpServlet {
 	
 	private final static Logger LOG = Logger.getLogger(PerrosController.class);
 	private static final long serialVersionUID = 1L;
+	private int indice = 0;
+	private String mensaje = "";
 	 
 	
     private ArrayList<Perro> perros = new ArrayList<Perro>();
@@ -33,11 +35,12 @@ public class PerrosController extends HttpServlet {
 		
 		LOG.trace("se ejecuta la 1º vez que se llama a este servlet y nunca mas");
 		super.init(config);
-		perros.add( new Perro("bubba") );
-		perros.add( new Perro("rataplan") );
-		perros.add( new Perro("mosca") );
-		perros.add( new Perro("txakur") );
-		perros.add( new Perro("lagun") );		
+		perros.add( new Perro(1,"bubba") );
+		perros.add( new Perro(2,"rataplan") );
+		perros.add( new Perro(3,"mosca") );
+		perros.add( new Perro(4,"txakur") );
+		perros.add( new Perro(5,"lagun") );		
+		indice = 6;
 	}
 	
 	@Override
@@ -52,10 +55,13 @@ public class PerrosController extends HttpServlet {
 		
 		LOG.trace("se ejecuta antes del doGet o doPost");
 		
+		mensaje = "";
+		
 		super.service(request, response);   // ejecuta doGet o doPost
 		
 		LOG.trace("se ejecuta despues del doGet o doPost");
 		
+		request.setAttribute("mensaje", mensaje);
 		request.setAttribute("perros", perros);
 		request.getRequestDispatcher("perros.jsp").forward(request, response);
 		
@@ -72,6 +78,38 @@ public class PerrosController extends HttpServlet {
 		//listar perros
 		LOG.trace("doGET");
 		
+		int id = (request.getParameter("id") == null) ? 0 : Integer.parseInt(request.getParameter("id")) ;
+		boolean adoptar = (request.getParameter("adoptar") == null) ? false : true;
+		boolean editar = ( request.getParameter("editar") == null) ? false : true;
+		
+		LOG.debug("id= " + id + " adoptar=" + adoptar + " editar="+ editar);
+		
+		if ( id > 0 ) {
+			
+			//buscar perro en array
+			Perro perro = null;
+			for (Perro p : perros) {
+				if ( p.getId() == id ) {
+					perro = p;
+					break;
+				}
+			}
+			
+			
+			if( adoptar ) {							
+				perros.remove(perro);
+				mensaje = "Ya has adoptado al perro, gracias";
+			}
+			
+			if ( editar ) {
+				request.setAttribute("perroEditar", perro);
+			}
+			
+			
+		}else {
+			LOG.trace("solo listar perros");
+		}
+		
 		
 	}
 
@@ -84,18 +122,51 @@ public class PerrosController extends HttpServlet {
 		
 		//recibir datos del form
 		
+		int id = Integer.parseInt( request.getParameter("id") );
 		String nombre = request.getParameter("nombre");
+		String imagen = request.getParameter("imagen");
 		
+		//TODO validar parametros
+		
+		if ( id > 0 ) {
+			
+			LOG.trace("Modificar el perro");
+			Perro perro = null;
+			for (Perro p : perros) {
+				if ( p.getId() == id ) {
+					perro = p;
+					break;
+				}
+			}
+			perro.setNombre(nombre);
+			perro.setFoto(imagen);
+			
+			mensaje = "Perro modificado con exito";
+			
+			
+		}else {
+			
+			LOG.trace("Crear perro nuevo");
+			
+			//crear perro
+			Perro p = new Perro();		
+			p.setNombre(nombre);
+			p.setFoto(imagen);
+			p.setId(indice);
+			indice++;
+			
+			mensaje = "Gracias por dar de alta un nuevo perro";
+			
+			//guardar en lista
+			perros.add(p);
+			
+		}
 				
-		//crear perro
-		Perro p = new Perro();
-		p.setNombre(nombre);
-		
-		//guardar en lista
-		perros.add(p);
+	
 		
 		
 	
 	}
 
 }
+
