@@ -1,6 +1,9 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	
    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,6 +57,7 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("usuarioLogeado", "Administrador");
 			session.setAttribute("idioma", idioma );
 			session.setMaxInactiveInterval( -1 ); // nunca caduca
+			
 			
 			
 			String mensaje = "";
