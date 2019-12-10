@@ -4,6 +4,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 import org.apache.log4j.Logger;
 
@@ -12,10 +14,11 @@ import org.apache.log4j.Logger;
  *
  */
 @WebListener
-public class ContadorSesionesListener implements HttpSessionAttributeListener {
+public class ContadorSesionesListener implements HttpSessionAttributeListener, HttpSessionListener {
 
    
 	private final static Logger LOG = Logger.getLogger(ContadorSesionesListener.class);
+	
 	
 	/**
      * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
@@ -24,7 +27,14 @@ public class ContadorSesionesListener implements HttpSessionAttributeListener {
     	
     	LOG.debug("attributeAdded " + event.getName() + " " + event.getValue() );
     	
-    	ServletContext sc = event.getSession().getServletContext();
+    	if ( "usuarioLogeado".equals(event.getName()) ) {
+    	
+    		ServletContext sc = event.getSession().getServletContext();
+    		int num = (int)sc.getAttribute("numeroUsuariosConectados");    		
+    		sc.setAttribute("numeroUsuariosConectados", ++num );
+    		
+    	}
+    	
 
     }
 
@@ -34,6 +44,16 @@ public class ContadorSesionesListener implements HttpSessionAttributeListener {
     public void attributeRemoved(HttpSessionBindingEvent event)  { 
     	
     	LOG.debug("attributeRemoved " + event.getName() + " " + event.getValue() );
+    	
+    	if ( "usuarioLogeado".equals(event.getName()) ) {
+        	
+    		ServletContext sc = event.getSession().getServletContext();
+    		int num = (int)sc.getAttribute("numeroUsuariosConectados");    		
+    		sc.setAttribute("numeroUsuariosConectados", --num );
+    		
+    	}
+
+    	
     	
     }
 
@@ -45,5 +65,17 @@ public class ContadorSesionesListener implements HttpSessionAttributeListener {
     	LOG.debug("attributeReplaced " + event.getName() + " " + event.getValue() );
     	
     }
+
+	@Override
+	public void sessionCreated(HttpSessionEvent se) {
+		LOG.trace("sessionCreated ");
+		
+	}
+
+	@Override
+	public void sessionDestroyed(HttpSessionEvent se) {
+		LOG.trace("sessionDestroyed ");
+		
+	}
 	
 }
