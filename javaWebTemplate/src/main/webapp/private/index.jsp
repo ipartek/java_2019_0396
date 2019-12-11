@@ -6,4 +6,14 @@
 <p>atributo desde servlet => ${atributoDesdeServelet}</p>
 
 
+<p>Usuarios Logeados <b>X</b> </p>
+<p>Numero de Intentos de Acceso Indebidos <b>X</b> </p>
+<ol>
+	<h3>IPs sin repetir de accesos indebidos</h3>
+	<li>192.x.x.x</li>
+	<li>192.x.x.x</li>
+	<li>192.x.x.x</li>
+</ol>
+
+
 <%@include file="../includes/footer.jsp" %>
