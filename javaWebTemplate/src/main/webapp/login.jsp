@@ -1,6 +1,23 @@
-<h1>Login</h1>
+
+<p>Indicamos una una directiva, que en caso de error tiene que ir a la pagian de error indicada</p>
+<code>page errorPage="error.jsp"</code>
+
+<%@ page errorPage="error.jsp" %>
 
 <%
+
+    // descomentar estas lineas para que lance un error
+	// Object o = null;
+	// o.toString();	
+%>
+
+
+<h1>Login</h1>
+
+
+<%	
+	
+
 	//atributo
 	String mensaje = (String)request.getAttribute("mensaje");
 	

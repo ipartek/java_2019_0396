@@ -3,6 +3,8 @@
 <%@include file="includes/navigation.jsp" %>
 
 <%
+
+
 	
 	out.print("<h1>Soy index.jsp</h1>");
 

@@ -38,6 +38,9 @@ public class LoginController extends HttpServlet {
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String vista = "";
 		
+		// descomentar estas lienas para que lance una exception
+		// int infinito = 5 / 0;
+		
 		//1. recibir parametros
 		String usuario    = request.getParameter("usuario");
 		String contrasena = request.getParameter("contrasena");
