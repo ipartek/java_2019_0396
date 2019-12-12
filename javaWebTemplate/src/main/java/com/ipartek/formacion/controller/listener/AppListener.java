@@ -36,7 +36,7 @@ public class AppListener implements ServletContextListener {
     	//deportes
     	HashMap<String,String> hmDeportes = new HashMap<String, String>();
     	hmDeportes.put("1", "Surf");
-    	hmDeportes.put("23", "Bodyboard");
+    	hmDeportes.put("213", "Bodyboard");
     	hmDeportes.put("34", "Quidditch");
     	hmDeportes.put("33", "Jugger");
     	hmDeportes.put("7", "Soffing");
