@@ -1,12 +1,14 @@
 package com.ipartek.formacion.controller.filter;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -32,6 +34,17 @@ import com.ipartek.formacion.controller.PerrosController2;
 public class SeguridadFilter implements Filter {
 	
 	private final static Logger LOG = Logger.getLogger(SeguridadFilter.class);
+
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		
+		LOG.trace("init");		
+		ServletContext sc = fConfig.getServletContext(); 
+		sc.setAttribute("numeroUsuariosIndebidos", 0);    	
+		sc.setAttribute("ips", new HashSet<String>());
+	}
 
   
 	/**
@@ -63,12 +76,22 @@ public class SeguridadFilter implements Filter {
 			LOG.debug("HTTP RemoteAddr " + req.getRemoteAddr() );
 			LOG.debug("HTTP RemoteHost " + req.getRemoteHost() );
 			LOG.debug("navegador " + req.getHeader("User-Agent") );
+									
+			// AplicationContext en la JSP	
+			ServletContext sc = req.getServletContext(); 
+			
+			//actulizar contador
+			int numeroUsuariosIndebidos = (int)sc.getAttribute("numeroUsuariosIndebidos");
+			sc.setAttribute("numeroUsuariosIndebidos", ++numeroUsuariosIndebidos);
+						
+			//guardar ip
+			HashSet<String> ips = (HashSet<String>)sc.getAttribute("ips");
+			String ipCliente = req.getRemoteHost();
+			ips.add(ipCliente);
+			sc.setAttribute("ips", ips);
 			
 			
-			Map parametosMap = req.getParameterMap();
-			
-			
-			
+									
 		}else {
 			// dejamos continuar
 			// pass the request along the filter chain
@@ -80,11 +103,5 @@ public class SeguridadFilter implements Filter {
 		
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		LOG.trace("init");
-	}
 
 }
