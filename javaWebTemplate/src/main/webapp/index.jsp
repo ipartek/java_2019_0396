@@ -12,6 +12,7 @@
 
 <a href="perros">CRUD Perros</a>
 <a href="perros2">CRUD Perros con JSTL</a>
+<a href="formulario-deportes.jsp">Ejemplo Checkboxes</a>
 
 <h2>Seguridad</h2>
 
