@@ -7,7 +7,7 @@
 <p>Saludos ${nombre}</p>
 
 <p>Tus deportes favoritos</p>
-
+${deportesSeleccionados}
 
 
 

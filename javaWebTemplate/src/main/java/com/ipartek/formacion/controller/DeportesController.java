@@ -46,15 +46,9 @@ public class DeportesController extends HttpServlet {
 			
 			HashMap<String, String> hmDeportes = (HashMap<String, String>)request.getServletContext().getAttribute("deportes");
 			ArrayList<String> deportesSeleccionados = new ArrayList<String>();
-			for (String deporteKey : deportes) {
-				
-				String deporteValue = hmDeportes.get(deporteKey); 
-				if ( deporteValue != null ) {					
-					deportesSeleccionados.add( deporteValue );				
-				}
-				
-			}
-			
+			for (String deporteKey : deportes) {					
+				deportesSeleccionados.add( hmDeportes.get(deporteKey) );
+			}			
 			
 			request.setAttribute("deportesSeleccionados", deportesSeleccionados);	
 			request.setAttribute("nombre", nombre);	
