@@ -14,8 +14,8 @@ public class ArrayPerroDaoTest {
 	
 	private static ArrayPerroDao dao;
 	private static Perro mock;
-	private static final int MOCK_ID_INEXISTENTE = -1;
-	private static final int MOCK_ID = 1;
+	private static final int MOCK_ID_INEXISTENTE = -1;	
+	private static int indice = 1;
 	private static final String MOCK_NOMBRE = "pulgas mock";
 
 	@BeforeClass
@@ -33,13 +33,19 @@ public class ArrayPerroDaoTest {
 
 	@Before
 	public void setUp() throws Exception {
-		mock = new Perro( MOCK_ID , MOCK_NOMBRE );
+		
+		
+		mock = new Perro( indice , MOCK_NOMBRE );
 		dao.create(mock);
+		indice++;
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		
+		dao.delete(mock.getId());		
 		mock = null;
+		
 	}
 
 	@Test
@@ -47,9 +53,8 @@ public class ArrayPerroDaoTest {
 
 		assertEquals("solo 1 perro ",1, dao.getAll().size() );
 		
-		dao.delete( mock.getId() );
-		
-		assertEquals("No deberia quedar ninguno",0, dao.getAll().size() );
+		//dao.delete( mock.getId() );		
+		//assertEquals("No deberia quedar ninguno",0, dao.getAll().size() );
 		
 		
 	}
@@ -59,7 +64,7 @@ public class ArrayPerroDaoTest {
 		
 		assertNull("Es imposible que exista este perro",dao.getById(-1));
 		
-		Perro p = dao.getById(MOCK_ID);
+		Perro p = dao.getById(indice);
 		assertSame("deberia existir pulgas",p, mock);
 		
 	}
@@ -69,9 +74,14 @@ public class ArrayPerroDaoTest {
 
 		try {
 			
-			Perro p = dao.delete(MOCK_ID);
-			assertSame(p, mock);
-			assertEquals("No queda ninguno",0, dao.getAll().size() );
+			//solucionar bug tearDown, creamos un perro, para eliminarlo
+			
+			Perro pEliminar = new Perro("Pulgas 345");			
+			dao.create(pEliminar);
+			Perro p = dao.delete(pEliminar.getId());
+			assertSame(p, pEliminar);
+			
+			//assertEquals("No queda ninguno",0, dao.getAll().size() );
 			
 			dao.delete(MOCK_ID_INEXISTENTE);
 			fail("deberia haber lanzaxo Exception");
