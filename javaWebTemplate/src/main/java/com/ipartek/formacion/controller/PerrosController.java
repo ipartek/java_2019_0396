@@ -146,6 +146,7 @@ public class PerrosController extends HttpServlet {
 				mensaje = "No se puede modificar";
 			}			
 			
+			// TODO arreglar error al modificar
 			
 			
 		}else {
