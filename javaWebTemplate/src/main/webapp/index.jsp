@@ -2,6 +2,8 @@
 <%@include file="includes/header.jsp" %>
 <%@include file="includes/navigation.jsp" %>
 
+
+
 <%
 
 
@@ -14,7 +16,7 @@
 <a href="perros2">CRUD Perros con JSTL</a>
 <a href="formulario-deportes.jsp">Ejemplo Checkboxes</a>
 
-<h2>Seguridad</h2>
+<h2>Branch Modelo</h2>
 
 <a href="private/home">Slatar login y seguridad</a>
 
