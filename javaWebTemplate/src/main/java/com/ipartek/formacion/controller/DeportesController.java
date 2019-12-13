@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class DeportesController
  */
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeportesController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private final static Logger LOG = Logger.getLogger(DeportesController.class);
        
 
 	/**
@@ -37,32 +40,45 @@ public class DeportesController extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String nombre = request.getParameter("nombre");		
+		String nombre = request.getParameter("nombre");
+		String sexo = request.getParameter("sexo");		
 		String deportes[] = request.getParameterValues("deportes");
 		
-			
-		//comprobar que menos 3 deportes
-		if ( deportes != null && deportes.length >= 3 ) {  // comprobacion correcta
-			
-			HashMap<String, String> hmDeportes = (HashMap<String, String>)request.getServletContext().getAttribute("deportes");
-			ArrayList<String> deportesSeleccionados = new ArrayList<String>();
-			for (String deporteKey : deportes) {					
-				deportesSeleccionados.add( hmDeportes.get(deporteKey) );
-			}			
-			
-			request.setAttribute("deportesSeleccionados", deportesSeleccionados);	
-			request.setAttribute("nombre", nombre);	
-			request.getRequestDispatcher("deportes-resumen.jsp").forward(request, response);
-			
-		}else {                                            // < 3 deportes
-			
-			request.setAttribute("nombre", nombre);
-			request.setAttribute("deportesMarcados", Arrays.toString(deportes) );
-			request.setAttribute("mensaje", "Selecciona almenos 3 deportes");
-			request.getRequestDispatcher("formulario-deportes.jsp").forward(request, response);
-			
-		}
 		
+		try {
+			
+		
+				
+			//comprobar que menos 3 deportes
+			if ( deportes != null && deportes.length >= 3 ) {  // comprobacion correcta
+				
+				HashMap<String, String> hmDeportes = (HashMap<String, String>)request.getServletContext().getAttribute("deportes");
+				ArrayList<String> deportesSeleccionados = new ArrayList<String>();
+				for (String deporteKey : deportes) {					
+					deportesSeleccionados.add( hmDeportes.get(deporteKey) );
+				}			
+				
+				request.setAttribute("deportesSeleccionados", deportesSeleccionados);	
+				request.setAttribute("nombre", nombre);
+				request.setAttribute("sexo", sexo);	
+				request.getRequestDispatcher("deportes-resumen.jsp").forward(request, response);
+				
+			}else {                                            // < 3 deportes
+				
+				request.setAttribute("nombre", nombre);
+				request.setAttribute("deportesMarcados", Arrays.toString(deportes) );
+				request.setAttribute("mensaje", "Selecciona almenos 3 deportes");
+				request.setAttribute("sexo", sexo);
+				request.getRequestDispatcher("formulario-deportes.jsp").forward(request, response);
+				
+			}
+		
+		}catch (Exception e) {
+			LOG.error(e);
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+			
+
+		}
 		
 		
 	}
