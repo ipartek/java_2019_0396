@@ -29,6 +29,8 @@
     </nav>
 
     <main class="container">
+    
+    	${productos}
 
         <div class="row contenedor-productos">
 
