@@ -41,10 +41,10 @@
 
                     <div class="body">
                         <p>
-                            <span class="precio-descuento">13,35€</span>
-                            <span class="precio-original">12,95€</span>
+                            <span class="precio-descuento">13,35 €</span>
+                            <span class="precio-original">12,95 €</span>
                         </p>
-                        <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                        <p class="text-muted precio-unidad">(18,50 € / litro)</p>
                         <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                     </div>
 
@@ -70,10 +70,10 @@
     
                         <div class="body">
                             <p>
-                                <span class="precio-descuento">13,35€</span>
-                                <span class="precio-original">12,95€</span>
+                                <span class="precio-descuento">13,35â¬</span>
+                                <span class="precio-original">12,95â¬</span>
                             </p>
-                            <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                            <p class="text-muted precio-unidad">(18,50â¬ / litro)</p>
                             <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                         </div>
     
@@ -83,7 +83,7 @@
                             <button class="plus">+</button>
                         </div>
     
-                        <button class="carro">añadir al carro</button>
+                        <button class="carro">aÃ±adir al carro</button>
     
                     </div>
                     <!-- /.producto -->
@@ -99,10 +99,10 @@
         
                             <div class="body">
                                 <p>
-                                    <span class="precio-descuento">13,35€</span>
-                                    <span class="precio-original">12,95€</span>
+                                    <span class="precio-descuento">13,35â¬</span>
+                                    <span class="precio-original">12,95â¬</span>
                                 </p>
-                                <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                                <p class="text-muted precio-unidad">(18,50â¬ / litro)</p>
                                 <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                             </div>
         
@@ -112,7 +112,7 @@
                                 <button class="plus">+</button>
                             </div>
         
-                            <button class="carro">añadir al carro</button>
+                            <button class="carro">aÃ±adir al carro</button>
         
                         </div>
                         <!-- /.producto -->
@@ -128,10 +128,10 @@
             
                                 <div class="body">
                                     <p>
-                                        <span class="precio-descuento">13,35€</span>
-                                        <span class="precio-original">12,95€</span>
+                                        <span class="precio-descuento">13,35â¬</span>
+                                        <span class="precio-original">12,95â¬</span>
                                     </p>
-                                    <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                                    <p class="text-muted precio-unidad">(18,50â¬ / litro)</p>
                                     <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                                 </div>
             
@@ -141,7 +141,7 @@
                                     <button class="plus">+</button>
                                 </div>
             
-                                <button class="carro">añadir al carro</button>
+                                <button class="carro">aÃ±adir al carro</button>
             
                             </div>
                             <!-- /.producto -->
@@ -158,10 +158,10 @@
                 
                                     <div class="body">
                                         <p>
-                                            <span class="precio-descuento">13,35€</span>
-                                            <span class="precio-original">12,95€</span>
+                                            <span class="precio-descuento">13,35â¬</span>
+                                            <span class="precio-original">12,95â¬</span>
                                         </p>
-                                        <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                                        <p class="text-muted precio-unidad">(18,50â¬ / litro)</p>
                                         <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                                     </div>
                 
@@ -171,7 +171,7 @@
                                         <button class="plus">+</button>
                                     </div>
                 
-                                    <button class="carro">añadir al carro</button>
+                                    <button class="carro">aÃ±adir al carro</button>
                 
                                 </div>
                                 <!-- /.producto -->
@@ -188,10 +188,10 @@
                     
                                         <div class="body">
                                             <p>
-                                                <span class="precio-descuento">13,35€</span>
-                                                <span class="precio-original">12,95€</span>
+                                                <span class="precio-descuento">13,35â¬</span>
+                                                <span class="precio-original">12,95â¬</span>
                                             </p>
-                                            <p class="text-muted precio-unidad">(18,50€ / litro)</p>
+                                            <p class="text-muted precio-unidad">(18,50â¬ / litro)</p>
                                             <p class="descripcion">VODka Bottella de Absolut version navidad 2020</p>
                                         </div>
                     
@@ -201,7 +201,7 @@
                                             <button class="plus">+</button>
                                         </div>
                     
-                                        <button class="carro">añadir al carro</button>
+                                        <button class="carro">aÃ±adir al carro</button>
                     
                                     </div>
                                     <!-- /.producto -->
@@ -224,7 +224,7 @@
                     <h5>Enlaces de Interes</h5>
                     <ul class="list-unstyled text-small">
                         <li><a class="text-muted" href="politica-privacidad.html">Politica Privacidad</a></li>
-                        <li><a class="text-muted" href="localizacion.html">Localización</a></li>
+                        <li><a class="text-muted" href="localizacion.html">LocalizaciÃ³n</a></li>
                         <li><a class="text-muted" href="contacto.html">Contacto</a></li>                    
                     </ul>
                 </div>
