@@ -11,7 +11,7 @@ public class Producto {
 	private float precio;
 	private String imagen;
 	private String descripcion;
-	private int decuento;
+	private int descuento;
 	
 	public Producto() {
 		super();
@@ -20,7 +20,7 @@ public class Producto {
 		this.precio = 0;
 		this.imagen = "https://image.flaticon.com/icons/png/512/372/372627.png";
 		this.descripcion = "";
-		this.decuento = DESCUENTO_MIN;
+		this.descuento = DESCUENTO_MIN;
 	}
 
 	public int getId() {
@@ -63,18 +63,22 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	public int getDecuento() {
-		return decuento;
+	public int getDescuento() {
+		return descuento;
 	}
 
-	public void setDecuento(int decuento) {
-		this.decuento = decuento;
+	public void setDescuento(int descuento) {
+		this.descuento = descuento;
+	}
+	
+	public float getPrecioDescuento() {
+		return (  (this.precio * ( 100 - this.descuento )) / 100  );
 	}
 
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen
-				+ ", descripcion=" + descripcion + ", decuento=" + decuento + "]";
+				+ ", descripcion=" + descripcion + ", descuento=" + descuento + "]";
 	}
 		
 }
