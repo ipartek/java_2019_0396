@@ -50,7 +50,8 @@ public class InicioController extends HttpServlet {
 		
 		//llamar al DAO capa modelo
 		ArrayList<Producto> productos = (ArrayList<Producto>) dao.getAll();
-		request.setAttribute("productos", productos );
+		request.setAttribute("productos", productos );		
+		request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_PRIMARY , "Los últimos productos destacados.") );		
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
