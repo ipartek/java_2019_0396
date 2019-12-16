@@ -45,6 +45,8 @@
 
     <main class="container">
     
+    *** etiqueta BASE ***
+    
     
     <c:if test="${not empty mensajeAlerta }">
     
