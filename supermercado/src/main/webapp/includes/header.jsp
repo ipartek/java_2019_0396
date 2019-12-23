@@ -15,9 +15,14 @@
     <meta name="description" content="">
     <meta name="author" content="Ander Uraga">
     <title>Supermercado</title>
+    
+   <base href="${pageContext.request.contextPath}/" >
 
    <!-- Bootstrap core CSS -->
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- datatables -->
+	<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"  rel="stylesheet">
 
    <!-- nuestro css -->
    <link rel="stylesheet" href="css/custom.css">
@@ -45,18 +50,16 @@
 
     <main class="container">
     
-    *** etiqueta BASE ***
-    
-    
-    <c:if test="${not empty mensajeAlerta }">
-    
-	    <div class="alert alert-${mensajeAlerta.tipo} alert-dismissible fade show mt-3" role="alert">
-		  ${mensajeAlerta.texto}
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-	
-	</c:if>
+   
+	    <c:if test="${not empty mensajeAlerta }">
+	    
+		    <div class="alert alert-${mensajeAlerta.tipo} alert-dismissible fade show mt-3" role="alert">
+			  ${mensajeAlerta.texto}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		
+		</c:if>
     
     

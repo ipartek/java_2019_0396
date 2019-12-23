@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ipartek.formacion.supermercado.controller.Alerta;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 
@@ -93,9 +94,10 @@ public class ProductosController extends HttpServlet {
 					break;
 				case ACCION_GUARDAR:	
 					guardar(request, response);
-					
+					break;
 				case ACCION_IR_FORMULARIO:	
 					irFormulario(request, response);
+					break;
 				default:
 					listar(request, response);
 					break;
@@ -121,23 +123,77 @@ public class ProductosController extends HttpServlet {
 
 	private void irFormulario(HttpServletRequest request, HttpServletResponse response) {
 		
-		//TODO pregutar por pID > 0 recuperar del DAO
-		// si no New Producto()
+		Producto pEditar = new Producto();
 		
-		//  	dao.getById(id) => implementar
+		if ( pId != null ) {
+			
+			int id = Integer.parseInt(pId);
+			pEditar = dao.getById(id);
+			
+		}
 		
-		request.setAttribute("producto", new Producto() );
+		
+		request.setAttribute("producto", pEditar );
 		vistaSeleccionda = VIEW_FORM;
 		
 	}
 
 	private void guardar(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
+		
+		int id = Integer.parseInt(pId);
+		Producto pGuardar = new Producto();		
+		pGuardar.setId(id);
+		pGuardar.setNombre(pNombre);
+		
+		
+		// nombre mas de 2 y menos de 50
+		if ( pNombre != null && pNombre.trim().length() >= 2 && pNombre.trim().length() <= 50 ) {
+				
+				
+				
+				try {
+				
+					if ( id > 0 ) {  // modificar
+						
+						dao.update(id, pGuardar);		
+						
+					}else {            // crear
+						dao.create(pGuardar);
+					}
+					
+				}catch (Exception e) {  // validacion a nivel de base datos
+					
+					request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre ya existe, selecciona otro"));
+				}	
+					
+			
+		}else {  // validacion de campos del formuarlio incorrectos
+			
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "El nombre debe ser entre 2 y 50 caratcteres"));
+			
+		}
+		
+		request.setAttribute("producto", pGuardar);
+		vistaSeleccionda = VIEW_FORM;
+		
+		
+		
 		
 	}
 
 	private void eliminar(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	
+		int id = Integer.parseInt(pId);
+		try {
+			Producto pEliminado = dao.delete(id);
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + pEliminado.getNombre() ));
+		} catch (Exception e) {
+			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto"));
+			
+		}
+		
+		listar(request, response);
 		
 	}
 
