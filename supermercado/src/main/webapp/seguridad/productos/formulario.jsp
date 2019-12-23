@@ -14,6 +14,11 @@
 		
 		<br>
 		
+		<label>Descuento:</label>
+		<input type="text" name="descuento" value="${producto.descuento}">
+		
+		<br>
+		
 		<input type="hidden" name="accion" value="guardar">
 		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }">
 	
