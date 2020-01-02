@@ -10,16 +10,21 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
-import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
+import com.ipartek.formacion.supermercado.modelo.pojo.Rol;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 public class UsuarioDAO implements IUsuarioDAO {
 
 	private final static Logger LOG = Logger.getLogger(UsuarioDAO.class);
 
-	private static final String SQL_EXIST = "SELECT id, nombre, contrasenia FROM usuario WHERE nombre = ? AND contrasenia = ?; ";
-	private static final String SQL_GET_ALL = "SELECT id , nombre, contrasenia " + 
-											  " FROM usuario " +											  											  
+	private static final String SQL_EXIST = " SELECT u.id 'id_usuario', u.nombre 'nombre_usuario', contrasenia, r.id 'id_rol', r.nombre 'nombre_rol' " + 
+											" FROM usuario u, rol r " + 
+											" WHERE u.id_rol = r.id AND " + 
+											" u.nombre = ? AND contrasenia = ? ; ";
+	
+	private static final String SQL_GET_ALL = " SELECT u.id 'id_usuario', u.nombre 'nombre_usuario', contrasenia, r.id 'id_rol', r.nombre 'nombre_rol' " + 
+											  " FROM usuario u, rol r " + 
+											  " WHERE u.id_rol = r.id " + 										  											  
 											  " ORDER BY id DESC LIMIT 500;";
 
 	private static UsuarioDAO INSTANCE;
@@ -42,9 +47,11 @@ public class UsuarioDAO implements IUsuarioDAO {
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
 		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);				
 				ResultSet rs = pst.executeQuery()) {
 
+			LOG.debug(pst);
+			
 			while (rs.next()) {
 										
 				lista.add( mapper(rs) );
@@ -52,7 +59,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOG.error(e);
 		}
 
 		return lista;
@@ -95,12 +102,8 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 			try (ResultSet rs = pst.executeQuery()) {
 
-				if (rs.next()) {
-					// mapear del RS al POJO
-					resul = new Usuario();
-					resul.setId(rs.getInt("id"));
-					resul.setNombre(rs.getString("nombre"));
-					resul.setContrasenia(rs.getString("contrasenia"));
+				if (rs.next()) {					
+					resul = mapper(rs);
 				}
 			}
 
@@ -115,9 +118,15 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private Usuario mapper(ResultSet rs) throws SQLException {
 				
 		Usuario u = new Usuario();
-		u.setId(rs.getInt("id"));
-		u.setNombre( rs.getString("nombre"));
+		u.setId(rs.getInt("id_usuario"));
+		u.setNombre( rs.getString("nombre_usuario"));
 		u.setContrasenia(rs.getString("contrasenia"));
+		
+		Rol r = new Rol();
+		r.setId( rs.getInt("id_rol"));
+		r.setNombre(rs.getString("nombre_rol"));
+		
+		u.setRol(r);
 		
 		return u;
 	}
