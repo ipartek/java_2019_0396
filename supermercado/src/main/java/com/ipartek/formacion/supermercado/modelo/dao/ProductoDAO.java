@@ -26,7 +26,7 @@ public class ProductoDAO implements IDAO<Producto> {
 			  									" WHERE p.id_usuario = u.id AND p.id= ? " + 
 			  									" ORDER BY p.id DESC LIMIT 500;";
 	
-	private static final String SQL_GET_INSERT ="INSERT INTO producto ( nombre) VALUES ( ? );";
+	private static final String SQL_GET_INSERT ="INSERT INTO `producto` (`nombre`, `id_usuario`) VALUES (?, ?);";
 	private static final String SQL_GET_UPDATE ="UPDATE `producto` SET `nombre`= ? , `id_usuario`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE ="DELETE FROM producto WHERE id = ? ;";
 	
@@ -146,14 +146,15 @@ public class ProductoDAO implements IDAO<Producto> {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pst = con.prepareStatement( SQL_GET_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
-			pst.setString(1, pojo.getNombre());			
+			pst.setString(1, pojo.getNombre());
+			pst.setInt(2, pojo.getUsuario().getId() );
 
 			int affectedRows = pst.executeUpdate();
 			if (affectedRows == 1) {
 				// conseguimos el ID que acabamos de crear
 				ResultSet rs = pst.getGeneratedKeys();
 				if (rs.next()) {
-					pojo.setId(rs.getInt(1));
+					pojo.setId(rs.getInt(1));					
 				}
 
 			}
