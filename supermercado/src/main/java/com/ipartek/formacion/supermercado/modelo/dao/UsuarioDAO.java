@@ -3,11 +3,14 @@ package com.ipartek.formacion.supermercado.modelo.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
+import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 public class UsuarioDAO implements IUsuarioDAO {
@@ -15,6 +18,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 	private final static Logger LOG = Logger.getLogger(UsuarioDAO.class);
 
 	private static final String SQL_EXIST = "SELECT id, nombre, contrasenia FROM usuario WHERE nombre = ? AND contrasenia = ?; ";
+	private static final String SQL_GET_ALL = "SELECT id , nombre, contrasenia " + 
+											  " FROM usuario " +											  											  
+											  " ORDER BY id DESC LIMIT 500;";
 
 	private static UsuarioDAO INSTANCE;
 
@@ -33,8 +39,23 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 	@Override
 	public List<Usuario> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
+				ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+										
+				lista.add( mapper(rs) );
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
 	}
 
 	@Override
@@ -89,5 +110,17 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 		return resul;
 	}
+	
+	
+	private Usuario mapper(ResultSet rs) throws SQLException {
+				
+		Usuario u = new Usuario();
+		u.setId(rs.getInt("id"));
+		u.setNombre( rs.getString("nombre"));
+		u.setContrasenia(rs.getString("contrasenia"));
+		
+		return u;
+	}
+	
 
 }

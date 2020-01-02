@@ -19,6 +19,15 @@
 		
 		<br>
 		
+		<label>Usuario</label>
+		<select name="usuarioId">
+			<c:forEach items="${usuarios}" var="u">
+				<option value="${u.id}"  ${(u.id eq producto.usuario.id)?"selected":""} >${u.nombre}</option>	
+			</c:forEach>
+		</select>
+		<br>
+		
+		
 		<input type="hidden" name="accion" value="guardar">
 		<input type="submit" value="${(producto.id>0)?"Modificar":"Crear" }">
 	
