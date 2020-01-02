@@ -69,6 +69,30 @@ public class ProductoDAO implements IDAO<Producto> {
 		return lista;
 	}
 
+
+	
+	public List<Producto> getAllByUser( int idUsuario ) {		
+		
+		ArrayList<Producto> lista = new ArrayList<Producto>();
+
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pst = con.prepareStatement(SQL_GET_ALL);
+				ResultSet rs = pst.executeQuery()) {
+
+			while (rs.next()) {
+										
+				lista.add( mapper(rs) );
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return lista;
+	}
+	
+	
 	@Override
 	public Producto getById(int id) {
 		
