@@ -12,6 +12,7 @@ import javax.servlet.jsp.el.ELException;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
+import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
 public class ProductoDAO implements IDAO<Producto> {
 	
@@ -54,6 +55,11 @@ public class ProductoDAO implements IDAO<Producto> {
 				Producto p = new Producto();
 				p.setId( rs.getInt("id"));
 				p.setNombre(rs.getString("nombre"));
+				
+				Usuario u = new Usuario();
+				u.setNombre("mapear");
+				p.setUsuario(u);
+				
 				lista.add(p);
 
 			}
