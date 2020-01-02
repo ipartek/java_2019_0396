@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.controller.seguridad;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -225,7 +226,8 @@ public class ProductosController extends HttpServlet {
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 		
-		request.setAttribute("productos", dao.getAll() );
+		ArrayList<Producto> productos = (ArrayList<Producto>) dao.getAll();
+		request.setAttribute("productos", productos );
 		vistaSeleccionda = VIEW_TABLA;
 		
 	}
