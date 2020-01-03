@@ -2,7 +2,6 @@ package com.ipartek.formacion.supermercado.controller.mipanel;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.servlet.ServletConfig;
@@ -16,6 +15,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.apache.log4j.Logger;
+
 import com.ipartek.formacion.supermercado.controller.Alerta;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.dao.UsuarioDAO;
@@ -26,7 +27,10 @@ import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
  * Servlet implementation class ProductosController
  */
 @WebServlet("/mipanel/productos")
-public class ProductosController2 extends HttpServlet {
+public class ProductosController extends HttpServlet {
+	
+	private final static Logger LOG = Logger.getLogger(ProductosController.class);
+
 	
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW_TABLA = "productos/index.jsp";
@@ -34,7 +38,7 @@ public class ProductosController2 extends HttpServlet {
 	private static String vistaSeleccionda = VIEW_TABLA;
 	private static ProductoDAO daoProducto;
 	private static UsuarioDAO daoUsuario;
-	
+	private Usuario uLogeado;
 	//acciones
 	public static final String ACCION_LISTAR = "listar";
 	public static final String ACCION_IR_FORMULARIO = "formulario";
@@ -54,7 +58,7 @@ public class ProductosController2 extends HttpServlet {
 	String pImagen;
 	String pDescripcion;
 	String pDescuento;
-	String pUsuarioId;
+	
 	
 	
 	@Override
@@ -101,8 +105,10 @@ public class ProductosController2 extends HttpServlet {
 			pImagen = request.getParameter("imagen");
 			pDescripcion = request.getParameter("descripcion");
 			pDescuento = request.getParameter("descuento");
-			pUsuarioId = request.getParameter("usuarioId");
+						
+			uLogeado = (Usuario)request.getSession().getAttribute("usuarioLogeado");
 			
+			//TODO agujero de seguridad, comprobar que el usuario de session sea el propietario del Producto
 			
 			try {
 				
@@ -128,8 +134,8 @@ public class ProductosController2 extends HttpServlet {
 				
 				
 			}catch (Exception e) {
-				// TODO log
-				e.printStackTrace();
+				
+				LOG.error(e);
 				
 			}finally {
 				
@@ -169,7 +175,7 @@ public class ProductosController2 extends HttpServlet {
 		pGuardar.setDescuento( Integer.parseInt(pDescuento));
 		
 		Usuario u = new Usuario();
-		u.setId(Integer.parseInt(pUsuarioId));
+		u.setId(uLogeado.getId()); //Evitar que se envie el parametro desde el formulario
 		pGuardar.setUsuario(u);
 				
 		
@@ -235,7 +241,7 @@ public class ProductosController2 extends HttpServlet {
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 		
-		ArrayList<Producto> productos = (ArrayList<Producto>) daoProducto.getAll();
+		ArrayList<Producto> productos = (ArrayList<Producto>) daoProducto.getAllByUser(uLogeado.getId());
 		request.setAttribute("productos", productos );
 		vistaSeleccionda = VIEW_TABLA;
 		
