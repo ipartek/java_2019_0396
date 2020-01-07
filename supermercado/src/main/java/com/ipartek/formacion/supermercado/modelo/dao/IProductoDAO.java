@@ -21,7 +21,7 @@ public interface IProductoDAO extends IDAO<Producto> {
 	 * @return Producto si encuentra, null si no encuentra
 	 * @throws ProductoException Cuando intenta recuperar un producto que no pertenece al usuario
 	 */
-	public Producto getByIdByUser( int idProducto, int idUsuario) throws SQLException, ProductoException;
+	public Producto getByIdByUser( int idProducto, int idUsuario) throws ProductoException;
 	
 	/**
 	 * Modificar un producto de un Usuario concreto
@@ -29,6 +29,7 @@ public interface IProductoDAO extends IDAO<Producto> {
 	 * @param idUsuario
 	 * @param pojo
 	 * @return
+	 * @throws SQLException Si el nombre del producto existe
 	 * @throws ProductoException Cuando intenta modificar un producto que no pertenece al usuario
 	 */
 	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws SQLException,  ProductoException;

@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class ProductoDAO implements IProductoDAO {
 
@@ -131,7 +130,7 @@ public class ProductoDAO implements IProductoDAO {
 	
 	
 	@Override
-	public Producto getByIdByUser(int idProducto, int idUsuario) throws SQLException, ProductoException {
+	public Producto getByIdByUser(int idProducto, int idUsuario) throws ProductoException {
 		Producto p = null;
 
 		try (Connection con = ConnectionManager.getConnection();
@@ -151,11 +150,11 @@ public class ProductoDAO implements IProductoDAO {
 					LOG.warn("No se encuentra producto");
 					throw new ProductoException(ProductoException.EXCEPTION_UNAUTORIZED);
 				}
-			}// try 2
+			}
 
-		}
-		
-		
+		}catch (SQLException e) {
+			throw new ProductoException(ProductoException.EXCEPTION_UNAUTORIZED);
+		}	
 
 		return p;
 	}
@@ -183,7 +182,7 @@ public class ProductoDAO implements IProductoDAO {
 	}
 	
 	@Override
-	public Producto deleteByUser(int idProducto, int idUsuario) throws SQLException, ProductoException {
+	public Producto deleteByUser(int idProducto, int idUsuario) throws ProductoException {
 
 		Producto registro = null;
 		try (Connection con = ConnectionManager.getConnection();
@@ -196,7 +195,9 @@ public class ProductoDAO implements IProductoDAO {
 
 			LOG.debug(pst);
 			
-			int affectedRows = pst.executeUpdate(); // eliminar
+			int affectedRows = pst.executeUpdate();
+			 
+			
 			if (affectedRows == 1) {
 				LOG.debug("registro eliminado");
 				
@@ -207,6 +208,8 @@ public class ProductoDAO implements IProductoDAO {
 				
 			}
 
+		} catch (SQLException e) {
+			throw new ProductoException(ProductoException.EXCEPTION_UNAUTORIZED);
 		}
 		return registro;
 	}
@@ -255,7 +258,7 @@ public class ProductoDAO implements IProductoDAO {
 				LOG.warn("No le pertence el producto");
 				throw new ProductoException(ProductoException.EXCEPTION_UNAUTORIZED);
 			}
-		}catch ( MySQLIntegrityConstraintViolationException e) {
+		}catch ( SQLException e) {
 			
 			LOG.debug("ya existe el nombre del producto");
 			throw e;
