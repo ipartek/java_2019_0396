@@ -1,5 +1,7 @@
 package com.ipartek.formacion.supermercado.modelo.dao;
 
+import javax.servlet.jsp.jstl.sql.SQLExecutionTag;
+
 public class ProductoException extends Exception {
 	
 	

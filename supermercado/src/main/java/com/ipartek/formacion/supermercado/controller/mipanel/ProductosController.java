@@ -1,6 +1,7 @@
 package com.ipartek.formacion.supermercado.controller.mipanel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import org.apache.log4j.Logger;
 
 import com.ipartek.formacion.supermercado.controller.Alerta;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
+import com.ipartek.formacion.supermercado.modelo.dao.ProductoException;
 import com.ipartek.formacion.supermercado.modelo.dao.UsuarioDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
@@ -44,6 +46,7 @@ public class ProductosController extends HttpServlet {
 	public static final String ACCION_IR_FORMULARIO = "formulario";
 	public static final String ACCION_GUARDAR = "guardar";   // crear y modificar
 	public static final String ACCION_ELIMINAR = "eliminar";
+	private boolean isRedirect;
 	
 	//Crear Factoria y Validador
 	ValidatorFactory factory;
@@ -96,6 +99,7 @@ public class ProductosController extends HttpServlet {
 
 	private void doAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+			isRedirect = false;
 	
 			//recoger parametros
 			pAccion = request.getParameter("accion");
@@ -131,15 +135,23 @@ public class ProductosController extends HttpServlet {
 				}
 				
 				
+			}catch (ProductoException e) {
 				
+				LOG.warn(e);
+				isRedirect = true;
+							
 				
 			}catch (Exception e) {
 				
 				LOG.error(e);
 				
 			}finally {
-				
-				request.getRequestDispatcher(vistaSeleccionda).forward(request, response);
+				if ( isRedirect) {
+					//invalidamos la session del usuario => ProductoException
+					response.sendRedirect( request.getContextPath() + "/logout");	
+				}else {
+					request.getRequestDispatcher(vistaSeleccionda).forward(request, response);
+				}	
 			}
 			
 			
@@ -148,14 +160,15 @@ public class ProductosController extends HttpServlet {
 	}
 
 
-	private void irFormulario(HttpServletRequest request, HttpServletResponse response) {
+	private void irFormulario(HttpServletRequest request, HttpServletResponse response) throws SQLException, ProductoException {
 		
 		Producto pEditar = new Producto();
 		
 		if ( pId != null ) {
 			
 			int id = Integer.parseInt(pId);
-			pEditar = daoProducto.getById(id);
+			//pEditar = daoProducto.getById(id);
+			pEditar = daoProducto.getByIdByUser(id, uLogeado.getId() );
 			
 		}
 		
@@ -165,7 +178,7 @@ public class ProductosController extends HttpServlet {
 		
 	}
 
-	private void guardar(HttpServletRequest request, HttpServletResponse response) {
+	private void guardar(HttpServletRequest request, HttpServletResponse response) throws ProductoException {
 		
 		
 		int id = Integer.parseInt(pId);
@@ -188,11 +201,14 @@ public class ProductosController extends HttpServlet {
 				
 					if ( id > 0 ) {  // modificar
 						
-						daoProducto.update(id, pGuardar);		
+						daoProducto.updateByUser(id, uLogeado.getId(), pGuardar);		
 						
 					}else {            // crear
 						daoProducto.create(pGuardar);
 					}
+				
+				}catch (ProductoException e) {
+					throw e;
 					
 				}catch (Exception e) {  // validacion a nivel de base datos
 					
@@ -224,16 +240,12 @@ public class ProductosController extends HttpServlet {
 		
 	}
 
-	private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws ProductoException, SQLException {
 	
 		int id = Integer.parseInt(pId);
-		try {
-			Producto pEliminado = daoProducto.delete(id);
-			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + pEliminado.getNombre() ));
-		} catch (Exception e) {
-			request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_DANGER, "No se puede Eliminar el producto"));
-			
-		}
+		
+		Producto pEliminado = daoProducto.deleteByUser(id, uLogeado.getId() );
+		request.setAttribute("mensajeAlerta", new Alerta(Alerta.TIPO_PRIMARY, "Eliminado " + pEliminado.getNombre() ));
 		
 		listar(request, response);
 		

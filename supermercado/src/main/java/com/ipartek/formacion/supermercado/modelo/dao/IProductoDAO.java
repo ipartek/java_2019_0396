@@ -1,5 +1,6 @@
 package com.ipartek.formacion.supermercado.modelo.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
@@ -20,7 +21,7 @@ public interface IProductoDAO extends IDAO<Producto> {
 	 * @return Producto si encuentra, null si no encuentra
 	 * @throws ProductoException Cuando intenta recuperar un producto que no pertenece al usuario
 	 */
-	public Producto getByIdByUser( int idProducto, int idUsuario) throws ProductoException;
+	public Producto getByIdByUser( int idProducto, int idUsuario) throws SQLException, ProductoException;
 	
 	/**
 	 * Modificar un producto de un Usuario concreto
@@ -30,7 +31,7 @@ public interface IProductoDAO extends IDAO<Producto> {
 	 * @return
 	 * @throws ProductoException Cuando intenta modificar un producto que no pertenece al usuario
 	 */
-	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws ProductoException;
+	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws SQLException,  ProductoException;
 	
 	
 	/**
@@ -44,6 +45,6 @@ public interface IProductoDAO extends IDAO<Producto> {
 	 * 				<li>Cuando no encuentra producto por su id para idUsuario</li>
 	 * 			</ol>
 	 */
-	public Producto deleteByUser(int idProducto, int idUsuario ) throws ProductoException;
+	public Producto deleteByUser(int idProducto, int idUsuario ) throws SQLException, ProductoException;
 	
 }
