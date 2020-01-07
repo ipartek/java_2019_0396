@@ -14,7 +14,7 @@ import com.ipartek.formacion.supermercado.model.ConnectionManager;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.modelo.pojo.Usuario;
 
-public class ProductoDAO implements IDAO<Producto> {
+public class ProductoDAO implements IProductoDAO {
 
 	private final static Logger LOG = Logger.getLogger(ProductoDAO.class);
 
@@ -185,6 +185,28 @@ public class ProductoDAO implements IDAO<Producto> {
 		return pojo;
 	}
 
+	
+
+	@Override
+	public Producto getByIdByUser(int idProducto, int idUsuario) throws ProductoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto updateByUser(int idProducto, int idUsuario, Producto pojo) throws ProductoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto deleteByUser(int idProducto, int idUsuario) throws ProductoException {
+
+		throw new ProductoException( ProductoException.EXCEPTION_UNAUTORIZED );
+		
+		//return null;
+	}
+	
 	/**
 	 * Utilidad para mapear un ResultSet a un Producto
 	 * 
