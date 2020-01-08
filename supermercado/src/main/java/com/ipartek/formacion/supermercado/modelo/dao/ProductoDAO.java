@@ -260,7 +260,7 @@ public class ProductoDAO implements IProductoDAO {
 			}
 		}catch ( SQLException e) {
 			
-			LOG.debug("ya existe el nombre del producto");
+			LOG.debug(e + " ya existe el nombre del producto");
 			throw e;
 		}
 		return pojo;
