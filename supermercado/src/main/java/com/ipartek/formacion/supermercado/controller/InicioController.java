@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ipartek.formacion.supermercado.model.ConnectionManager;
+import com.ipartek.formacion.supermercado.modelo.dao.CategoriaDAO;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
+import com.ipartek.formacion.supermercado.modelo.pojo.Categoria;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 
 /**
@@ -21,20 +23,24 @@ import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 public class InicioController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private static ProductoDAO dao;
+	private static ProductoDAO daoProducto;
+	private static CategoriaDAO daoCategoria;
        
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {	
 		super.init(config);
-		dao = ProductoDAO.getInstance();
+		daoProducto = ProductoDAO.getInstance();
+		daoCategoria = CategoriaDAO.getInstance();
+		
 	}
 	
 	
 	@Override
 	public void destroy() {	
 		super.destroy();
-		dao = null;
+		daoProducto = null;
+		daoCategoria = null;
 	}
 	
 	@Override
@@ -63,8 +69,11 @@ public class InicioController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//llamar al DAO capa modelo
-		ArrayList<Producto> productos = (ArrayList<Producto>) dao.getAll();
+		ArrayList<Producto> productos = (ArrayList<Producto>) daoProducto.getAll();
+		ArrayList<Categoria> categorias = (ArrayList<Categoria>) daoCategoria.getAll();
+		
 		request.setAttribute("productos", productos );		
+		request.setAttribute("categorias", categorias );
 		request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_PRIMARY , "Los últimos productos destacados.") );		
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
