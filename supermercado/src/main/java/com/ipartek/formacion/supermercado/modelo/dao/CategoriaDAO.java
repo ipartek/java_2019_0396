@@ -75,8 +75,30 @@ public class CategoriaDAO implements ICategoriaDAO {
 
 	@Override
 	public Categoria create(Categoria pojo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		LOG.trace("insertar nueva categoria " + pojo );
+		Categoria registro = pojo;
+		
+		try (Connection con = ConnectionManager.getConnection();
+			 CallableStatement cs = con.prepareCall("{ CALL pa_categoria_insert(?,?) }");) {
+			
+			// parametro de entrada 1º?
+			cs.setString(1, pojo.getNombre() );
+			
+			//registro el paremetro de salida 2º ?
+			cs.registerOutParameter(2, java.sql.Types.INTEGER );
+			
+			LOG.debug(cs);
+			
+			//executamos el procedimiento almacenado executeUpdate, CUIDADO no es una SELECT => executeQuery	
+			int affectedRows = cs.executeUpdate();
+			LOG.debug("registros creados " + affectedRows);
+			
+			// una vez ejecutado, podemos recuperar el parametro de salida 2º ?			
+			pojo.setId( cs.getInt(2) );
+			
+		}
+		
+		return registro;
 	}
 
 }

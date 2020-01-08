@@ -17,28 +17,55 @@ DROP DATABASE IF EXISTS `supermercado`;
 CREATE DATABASE IF NOT EXISTS `supermercado` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `supermercado`;
 
+-- Volcando estructura para tabla supermercado.categoria
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE IF NOT EXISTS `categoria` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla supermercado.categoria: ~3 rows (aproximadamente)
+DELETE FROM `categoria`;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
+	(1, 'alimentacion'),
+	(3, 'electrodomesticos'),
+	(8, 'mock1578481800756'),
+	(9, 'mock1578481818788'),
+	(10, 'mock1578481826338'),
+	(11, 'mock1578481907299'),
+	(12, 'mock1578482841038'),
+	(2, 'musica'),
+	(4, 'nueva'),
+	(5, 'nueva2'),
+	(6, 'otra'),
+	(7, 'otra333');
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+
 -- Volcando estructura para tabla supermercado.producto
 DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`),
   KEY `FK_usuario` (`id_usuario`),
+  KEY `FK_categoria` (`id_categoria`),
+  CONSTRAINT `FK_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`),
   CONSTRAINT `FK_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla supermercado.producto: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla supermercado.producto: ~3 rows (aproximadamente)
 DELETE FROM `producto`;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` (`id`, `nombre`, `id_usuario`) VALUES
-	(8, 'donetes', 1),
-	(10, 'galletas3', 1),
-	(12, 'rosocon', 4),
-	(17, 'donetes rayados', 4),
-	(19, 'otro', 4),
-	(20, 'cafe con leche 2', 4);
+INSERT INTO `producto` (`id`, `nombre`, `id_categoria`, `id_usuario`) VALUES
+	(8, 'donetes con sabor a unicornio', 1, 1),
+	(12, 'hsdfhjkdfhjksdsabor a unicornio', 2, 1),
+	(21, 'nuevo', 1, 4);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla supermercado.rol
@@ -76,8 +103,40 @@ DELETE FROM `usuario`;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `nombre`, `contrasenia`, `id_rol`) VALUES
 	(1, 'admin', 'admin', 2),
-	(4, 'Dolores', '56789', 1);
+	(4, 'Dolores', '123456', 1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+
+-- Volcando estructura para procedimiento supermercado.pa_categoria_getall
+DROP PROCEDURE IF EXISTS `pa_categoria_getall`;
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_getall`()
+BEGIN
+
+   	-- nuestro primer PA
+   	/*  tiene pinta que tambien comentarios de bloque */
+    SELECT id, nombre FROM categoria ORDER BY nombre ASC LIMIT 500;
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento supermercado.pa_categoria_insert
+DROP PROCEDURE IF EXISTS `pa_categoria_insert`;
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_insert`(
+	IN `p_nombre` VARCHAR(100),
+	OUT `p_id` INT
+)
+BEGIN
+
+	-- crear nuevo registro
+	INSERT INTO categoria ( nombre ) VALUES ( p_nombre );
+	
+	-- obtener el ID generado y SETearlo al parametro salida p_id
+	SET p_id = LAST_INSERT_ID();
+	
+
+END//
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

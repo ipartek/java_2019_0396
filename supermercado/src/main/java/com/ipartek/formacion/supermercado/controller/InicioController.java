@@ -68,12 +68,33 @@ public class InicioController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		//TODO guaramente creamos una categoria, esto deberia probarse en otro sitio
+				try {
+					Categoria c = new Categoria();
+					c.setNombre("mock" + System.currentTimeMillis() );
+					daoCategoria.create(c);
+					
+					daoCategoria.delete(c.getId());
+					
+					daoCategoria.update(1, c);
+					
+					daoCategoria.getById(1) ;
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}	
+		
 		//llamar al DAO capa modelo
 		ArrayList<Producto> productos = (ArrayList<Producto>) daoProducto.getAll();
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) daoCategoria.getAll();
 		
+		
+		
 		request.setAttribute("productos", productos );		
-		request.setAttribute("categorias", categorias );
+		request.setAttribute("categorias", categorias );	
+		
+		
 		request.setAttribute("mensajeAlerta", new Alerta( Alerta.TIPO_PRIMARY , "Los últimos productos destacados.") );		
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
