@@ -13,12 +13,10 @@
 
 
 -- Volcando estructura de base de datos para supermercado
-DROP DATABASE IF EXISTS `supermercado`;
 CREATE DATABASE IF NOT EXISTS `supermercado` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `supermercado`;
 
 -- Volcando estructura para tabla supermercado.categoria
-DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL DEFAULT '0',
@@ -26,16 +24,15 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   UNIQUE KEY `nombre` (`nombre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla supermercado.categoria: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla supermercado.categoria: ~11 rows (aproximadamente)
 DELETE FROM `categoria`;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
 	(1, 'alimentacion'),
 	(3, 'electrodomesticos'),
-	(8, 'mock1578481800756'),
+	(8, 'fruteria'),
 	(9, 'mock1578481818788'),
 	(10, 'mock1578481826338'),
-	(11, 'mock1578481907299'),
 	(12, 'mock1578482841038'),
 	(2, 'musica'),
 	(4, 'nueva'),
@@ -45,7 +42,6 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 
 -- Volcando estructura para tabla supermercado.producto
-DROP TABLE IF EXISTS `producto`;
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -69,7 +65,6 @@ INSERT INTO `producto` (`id`, `nombre`, `id_categoria`, `id_usuario`) VALUES
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla supermercado.rol
-DROP TABLE IF EXISTS `rol`;
 CREATE TABLE IF NOT EXISTS `rol` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1: Usuario normal   2: Administrador',
   `nombre` varchar(15) NOT NULL DEFAULT '0',
@@ -86,7 +81,6 @@ INSERT INTO `rol` (`id`, `nombre`) VALUES
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 
 -- Volcando estructura para tabla supermercado.usuario
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL DEFAULT '0',
@@ -106,8 +100,19 @@ INSERT INTO `usuario` (`id`, `nombre`, `contrasenia`, `id_rol`) VALUES
 	(4, 'Dolores', '123456', 1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
+-- Volcando estructura para procedimiento supermercado.pa_categoria_delete
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_delete`(
+	IN `pId` INT
+)
+BEGIN
+
+	DELETE FROM categoria WHERE id = pId;
+
+END//
+DELIMITER ;
+
 -- Volcando estructura para procedimiento supermercado.pa_categoria_getall
-DROP PROCEDURE IF EXISTS `pa_categoria_getall`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_getall`()
 BEGIN
@@ -115,12 +120,26 @@ BEGIN
    	-- nuestro primer PA
    	/*  tiene pinta que tambien comentarios de bloque */
     SELECT id, nombre FROM categoria ORDER BY nombre ASC LIMIT 500;
+    
+    -- desde java executeQuery
+    -- retorna ResultSet
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento supermercado.pa_categoria_get_by_id
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_get_by_id`(
+	IN `pId` INT
+)
+BEGIN
+
+	SELECT id, nombre FROM categoria WHERE id = pId;
 
 END//
 DELIMITER ;
 
 -- Volcando estructura para procedimiento supermercado.pa_categoria_insert
-DROP PROCEDURE IF EXISTS `pa_categoria_insert`;
 DELIMITER //
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_insert`(
 	IN `p_nombre` VARCHAR(100),
@@ -134,6 +153,22 @@ BEGIN
 	-- obtener el ID generado y SETearlo al parametro salida p_id
 	SET p_id = LAST_INSERT_ID();
 	
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para procedimiento supermercado.pa_categoria_update
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pa_categoria_update`(
+	IN `pId` INT,
+	IN `pNombre` VARCHAR(100)
+)
+BEGIN
+
+
+	UPDATE categoria SET nombre = pNombre WHERE id = pId;
+	
+	-- desde java executeUpdate, retorna affectedRows int
 
 END//
 DELIMITER ;
