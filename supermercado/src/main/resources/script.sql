@@ -22,18 +22,16 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombre` varchar(100) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla supermercado.categoria: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla supermercado.categoria: ~8 rows (aproximadamente)
 DELETE FROM `categoria`;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
-	(1, 'alimentacion'),
+	(14, '0categoria'),
 	(3, 'electrodomesticos'),
 	(8, 'fruteria'),
-	(9, 'mock1578481818788'),
-	(10, 'mock1578481826338'),
-	(12, 'mock1578482841038'),
+	(1, 'mock1578556983823'),
 	(2, 'musica'),
 	(4, 'nueva'),
 	(5, 'nueva2'),
@@ -41,27 +39,62 @@ INSERT INTO `categoria` (`id`, `nombre`) VALUES
 	(7, 'otra333');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 
+-- Volcando estructura para tabla supermercado.historico
+CREATE TABLE IF NOT EXISTS `historico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `precio` float NOT NULL DEFAULT '0',
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_producto` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_producto` (`id_producto`),
+  CONSTRAINT `FK_producto` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla supermercado.historico: ~7 rows (aproximadamente)
+DELETE FROM `historico`;
+/*!40000 ALTER TABLE `historico` DISABLE KEYS */;
+INSERT INTO `historico` (`id`, `precio`, `fecha`, `id_producto`) VALUES
+	(1, 12, '2020-01-10 08:21:25', 8),
+	(2, 12, '2020-01-10 08:21:34', 8),
+	(3, 56, '2020-01-10 08:21:40', 8),
+	(4, 100, '2020-01-10 08:21:52', 8),
+	(5, 400, '2020-01-10 08:22:15', 8),
+	(6, 400, '2020-01-10 08:22:23', 8),
+	(7, 400, '2020-01-10 08:22:25', 8),
+	(8, 400, '2020-01-10 08:24:02', 8),
+	(9, 0, '2020-01-10 08:24:06', 8),
+	(10, 1, '2020-01-10 08:24:12', 8);
+/*!40000 ALTER TABLE `historico` ENABLE KEYS */;
+
 -- Volcando estructura para tabla supermercado.producto
 CREATE TABLE IF NOT EXISTS `producto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
+  `precio` float NOT NULL DEFAULT '0',
+  `descuento` int(11) DEFAULT '0' COMMENT 'porcentaje descuento de 0 a 100',
+  `fecha_modificacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre` (`nombre`),
   KEY `FK_usuario` (`id_usuario`),
   KEY `FK_categoria` (`id_categoria`),
   CONSTRAINT `FK_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`),
   CONSTRAINT `FK_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla supermercado.producto: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla supermercado.producto: ~8 rows (aproximadamente)
 DELETE FROM `producto`;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` (`id`, `nombre`, `id_categoria`, `id_usuario`) VALUES
-	(8, 'donetes con sabor a unicornio', 1, 1),
-	(12, 'hsdfhjkdfhjksdsabor a unicornio', 2, 1),
-	(21, 'nuevo', 1, 4);
+INSERT INTO `producto` (`id`, `nombre`, `id_categoria`, `id_usuario`, `precio`, `descuento`, `fecha_modificacion`) VALUES
+	(8, 'unicoeeeernioeeeeeee', 1, 1, 2, 0, '2020-01-10 08:24:12'),
+	(12, 'hsdfhjkdfhjksdsabor a unicornio', 2, 1, 0, 0, '2020-01-09 12:56:42'),
+	(21, 'nuevo33333', 1, 4, 0, 0, '2020-01-09 13:03:52'),
+	(22, 'morcilla', 1, 1, 0, 2, '2020-01-09 13:04:17'),
+	(29, 'morcilla de burgos', 1, 1, 0, 0, '2020-01-09 12:56:42'),
+	(30, 'queso de burgos', 1, 1, 0, 50, '2020-01-09 12:56:42'),
+	(31, 'queso manchego', 1, 1, 0, 100, '2020-01-09 12:56:42'),
+	(36, 'morcillaeeeeee3333', 1, 1, 0, 0, '2020-01-09 13:03:57');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 
 -- Volcando estructura para tabla supermercado.rol
@@ -172,6 +205,98 @@ BEGIN
 
 END//
 DELIMITER ;
+
+-- Volcando estructura para función supermercado.HELLO_WORLD
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` FUNCTION `HELLO_WORLD`() RETURNS varchar(100) CHARSET utf8
+BEGIN
+
+	RETURN "hola mundo";
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para función supermercado.HELLO_WORLD2
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` FUNCTION `HELLO_WORLD2`(
+	`pNombre` VARCHAR(50)
+) RETURNS varchar(100) CHARSET utf8
+BEGIN
+
+	DECLARE nombre VARCHAR(100) DEFAULT 'anonimo';
+
+   IF( TRIM(pNombre) != '' ) THEN
+   	SET nombre = TRIM(pNombre);
+   END IF;
+
+	--	RETURN "Hello" +  pNombre;
+	RETURN CONCAT("hello"," ",nombre);
+
+END//
+DELIMITER ;
+
+-- Volcando estructura para disparador supermercado.tau_producto_historico
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `tau_producto_historico` AFTER UPDATE ON `producto` FOR EACH ROW BEGIN
+
+	-- meter un registro en la tabla historico con el precio del producto cambiado
+	
+	-- comprobar que inserte solo si cambia el precio
+	
+	IF ( NEW.precio <> OLD.precio ) THEN
+	
+		INSERT INTO historico (precio, id_producto ) VALUES ( OLD.precio , OLD.id );
+		
+	END IF;
+		
+
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Volcando estructura para disparador supermercado.tbi_producto
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `tbi_producto` BEFORE INSERT ON `producto` FOR EACH ROW BEGIN
+
+	/* 
+		comprobar que el descuento sea entre 0 y 100 
+		si descuento < 0 = 0
+		si descuento > 100 = 100
+	*/
+
+	IF NEW.descuento < 0 THEN 
+		SET NEW.descuento = 0; 
+	END IF;
+	
+	IF NEW.descuento > 100 THEN 
+		SET NEW.descuento = 100; 
+	END IF;	
+
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
+
+-- Volcando estructura para disparador supermercado.tbu_producto
+SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+DELIMITER //
+CREATE TRIGGER `tbu_producto` BEFORE UPDATE ON `producto` FOR EACH ROW BEGIN
+
+	IF NEW.descuento < 0 THEN 
+		SET NEW.descuento = 0; 
+	END IF;
+	
+
+	IF NEW.descuento > 100 THEN 
+		SET NEW.descuento = 100; 
+	END IF;	
+
+	-- INSERT INTO categoria (nombre) VALUE ( CONCAT(NEW.descuento, 'categoria'));
+
+END//
+DELIMITER ;
+SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
