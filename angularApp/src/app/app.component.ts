@@ -91,9 +91,10 @@ export class AppComponent {
 
 pSeleccionado = this.productos[0];
 
-  // funcion
+  // funciones
+
   selecionarProducto = function( producto ) {
-    console.log('hemos hecho click');
+    console.debug('hemos hecho click %o ', producto );
     this.pSeleccionado = producto;
   };
 

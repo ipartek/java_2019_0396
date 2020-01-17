@@ -9,14 +9,19 @@
             <ul class="list-group">
                 <li *ngFor="let p of productos" 
                     (click)="selecionarProducto(p)"
-                    class="list-group-item">
+                    class="list-group-item {{ (p==pSeleccionado) ? 'active' : ''  }}">
                     <b>{{p.nombre}}</b> {{p.precio}}€
                 </li>
             </ul>
     </div>
     <!-- detalle -->
     <div class="col">
-        {{pSeleccionado.nombre}}
+            <span *ngIf="!pSeleccionado.glutten" class="badge badge-pill badge-success">Sin Gluten</span>
+            <span *ngIf="pSeleccionado.glutten" class="badge badge-pill badge-danger">Con Gluten</span>
+
+        {{ pSeleccionado | json }}
+
+
     </div>
 </div>
 
