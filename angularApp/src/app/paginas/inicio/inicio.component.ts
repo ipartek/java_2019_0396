@@ -15,16 +15,22 @@ export class InicioComponent implements OnInit {
     console.trace('InicioComponent constructor');
     this.pokemon = {};
 
-  }
+  }// constructor
 
   ngOnInit() {
     console.trace('InicioComponent ngOnInit');
 
-    this.pokemonService.getPokemon().subscribe( data => {
-      console.debug(data);
-      this.pokemon = data;
-    });
+    this.pokemonService.getPokemon().subscribe(
+      data => {
+        console.debug('petición ok %o' , data);
+        this.pokemon = data;
+      },
+      error => console.warn(error),
+      () => {
+        console.trace('petición completa');
+      }
+    );
 
-  }
+  }// ngOnInit
 
 }
