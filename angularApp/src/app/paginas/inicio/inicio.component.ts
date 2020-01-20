@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  pokemon: any;
+
+  constructor( private pokemonService: PokemonService ) {
+
+    console.trace('InicioComponent constructor');
+    this.pokemon = {};
+
+  }
 
   ngOnInit() {
+    console.trace('InicioComponent ngOnInit');
+
+    this.pokemonService.getPokemon().subscribe( data => {
+      console.debug(data);
+      this.pokemon = data;
+    });
+
   }
 
 }
