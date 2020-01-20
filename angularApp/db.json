@@ -1,0 +1,61 @@
+{
+  "colores": [
+    {
+      "id": 1,
+      "nombre": "negro",
+      "hex": "#000"
+    },
+    {
+      "id": 2,
+      "nombre": "blanco",
+      "hex": "#FFF"
+    },
+    {
+      "id": 3,
+      "nombre": "azul",
+      "hex": "#00F"
+    },
+    {
+      "id": 4,
+      "nombre": "rojo",
+      "hex": "#F00"
+    },
+    {
+      "id": 5,
+      "nombre": "verde",
+      "hex": "#0F0"
+    },
+    {
+      "nombre": "teal",
+      "hex": "#00FFDD",
+      "id": 6
+    }
+  ],
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "cafe"
+    },
+    {
+      "id": 2,
+      "nombre": "leche"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
