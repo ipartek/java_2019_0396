@@ -21,7 +21,7 @@ import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 /**
  * Servlet implementation class ProductoRestController
  */
-@WebServlet({ "/producto/", "/producto" })
+@WebServlet( { "/producto/*" } )
 public class ProductoRestController extends HttpServlet {
 	
 	
@@ -61,6 +61,10 @@ public class ProductoRestController extends HttpServlet {
 		
 		LOG.trace("peticion GET");
 		
+		String pathInfo = request.getPathInfo();
+		
+		LOG.debug("mirar pathInfo:" + pathInfo + " para saber si es listado o detalle" );
+		
 		//obtener productos de la BD
 		ArrayList<Producto> lista = (ArrayList<Producto>) productoDao.getAll();
 		
@@ -83,22 +87,23 @@ public class ProductoRestController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		LOG.debug("");
+		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
 	}
 
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
 	}
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
 	}
 
 }
