@@ -1,4 +1,4 @@
-package com.ipartek.formacion.supermercado.model;
+package com.ipartek.formacion.supermercado.modelo;
 
 import java.sql.Connection;
 
@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.ipartek.formacion.supermercado.controller.LoginController;
 
 public class ConnectionManager {
 

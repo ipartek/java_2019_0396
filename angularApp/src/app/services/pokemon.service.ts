@@ -25,7 +25,7 @@ export class PokemonService implements IPokemonService {
     throw new Error("Method not implemented.");
   }
 
-  getByName(idPokemon: string) {
+  getByName( nombre: string) {
     throw new Error("Method not implemented.");
   }
 

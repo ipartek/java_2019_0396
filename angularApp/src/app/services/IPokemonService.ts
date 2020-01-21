@@ -4,6 +4,6 @@ interface IPokemonService {
 
     getById( idPokemon: number );
 
-    getByName( idPokemon: string );
+    getByName( nombre: string );
 
 }
