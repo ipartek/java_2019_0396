@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
+import com.ipartek.formacion.supermercado.pojo.ResponseMensaje;
 
 
 /**
@@ -96,15 +97,27 @@ public class ProductoRestController extends HttpServlet {
 		Gson gson = new Gson();
 		Producto producto = gson.fromJson(reader, Producto.class);
 		
+		//TODO validar objeto
+		
 		LOG.debug(" Json convertido a Objeto: " + producto);
 		
+		
 		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
+		
+		PrintWriter out = response.getWriter();		              
+		String jsonResponseBody = new Gson().toJson( new ResponseMensaje("A pikar kodigo"));		  
+		out.print(jsonResponseBody.toString()); 	
+		out.flush();   
+		
+		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.debug("PUT modificar recurso");
 		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
 	}
 
@@ -112,6 +125,7 @@ public class ProductoRestController extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		LOG.debug("DELETE eliminar recurso");
 		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
 	}
 
