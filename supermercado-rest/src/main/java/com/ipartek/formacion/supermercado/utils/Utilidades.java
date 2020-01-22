@@ -20,8 +20,24 @@ public class Utilidades {
 	 */
 	public static int obtenerId(String pathInfo ) throws Exception {
 		
-		//throw new Exception("Sin implementar, primero Test!!!!");
-		return -1;
+		int resul = -1;
+		if ( pathInfo != null ) {
+			
+			try {
+				String[] cachos = pathInfo.split("/");
+				if ( cachos.length == 2 ) {
+					resul = Integer.parseInt(cachos[1]);
+				}else if( cachos.length > 2 ) {
+					throw new Exception("URL mal formada " + pathInfo);
+				}	
+			}catch (NumberFormatException e) {
+
+				throw new Exception("URL mal formada porque no es numerico " + pathInfo);	
+				
+			}	
+			
+		}	
+		return resul;
 	}
 
 }

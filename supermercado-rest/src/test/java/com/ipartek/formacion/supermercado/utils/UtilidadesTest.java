@@ -11,15 +11,34 @@ public class UtilidadesTest {
 		
 		assertEquals(-1, Utilidades.obtenerId(null) );
 		
-		assertEquals(-1, Utilidades.obtenerId("/") );
-		assertEquals(-1, Utilidades.obtenerId("/pepe") );
-		assertEquals(-1, Utilidades.obtenerId("/pepe/") );
+				
+		assertEquals(-1, Utilidades.obtenerId("/") );		
 		assertEquals(2, Utilidades.obtenerId("/2") );
 		assertEquals(2, Utilidades.obtenerId("/2/") );
 		assertEquals(99, Utilidades.obtenerId("/99/") );
 		
+		
 		try {
 			assertEquals(99, Utilidades.obtenerId("/99/333/hola/") );
+			fail("Deberia haber lanzado Exception");
+			
+		}catch (Exception e) {
+			
+			assertTrue(true);
+		}	
+		
+		try {
+			assertEquals(-1, Utilidades.obtenerId("/pepe") );
+			fail("Deberia haber lanzado Exception");
+			
+		}catch (Exception e) {
+			
+			assertTrue(true);
+		}	
+		
+		
+		try {
+			assertEquals(-1, Utilidades.obtenerId("/pepe/") );
 			fail("Deberia haber lanzado Exception");
 			
 		}catch (Exception e) {

@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.ipartek.formacion.supermercado.modelo.dao.ProductoDAO;
 import com.ipartek.formacion.supermercado.modelo.pojo.Producto;
 import com.ipartek.formacion.supermercado.pojo.ResponseMensaje;
+import com.ipartek.formacion.supermercado.utils.Utilidades;
 
 
 /**
@@ -30,6 +31,8 @@ public class ProductoRestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static Logger LOG = Logger.getLogger(ProductoRestController.class);
 	private ProductoDAO productoDao;
+	private String pathInfo;
+	private int statusCode;
 	
 
 	/**
@@ -51,6 +54,12 @@ public class ProductoRestController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// prepara la response		
+		response.setContentType("application/json"); 
+		response.setCharacterEncoding("utf-8");
+		
+		pathInfo = request.getPathInfo();		
+		LOG.debug("mirar pathInfo:" + pathInfo + " para saber si es listado o detalle" );
 		
 		super.service(request, response);   // llama a doGEt, doPost, doPut, doDelete
 		
@@ -62,26 +71,54 @@ public class ProductoRestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		LOG.trace("peticion GET");
+		Object reponseBody = null;
 		
-		String pathInfo = request.getPathInfo();
+		try {
+			int id = Utilidades.obtenerId(pathInfo);
+			if ( id != -1 ) {							// DETALLE
+				
+				reponseBody = productoDao.getById(id);
+				if ( null != reponseBody ) {
+					statusCode = HttpServletResponse.SC_OK;
+				}else {
+					statusCode = HttpServletResponse.SC_NOT_FOUND;
+				}
+				
+			}else {										// LISTADO
+				//obtener productos de la BD
+				reponseBody = (ArrayList<Producto>) productoDao.getAll();
+				if (  ((ArrayList<Producto>)reponseBody).isEmpty()  ) {
+					
+					statusCode = HttpServletResponse.SC_NO_CONTENT;
+				}else {
+					statusCode = HttpServletResponse.SC_OK;
+				}
+			}			
+			
+		}catch (Exception e) {			
+			// response status code
+			reponseBody = new ResponseMensaje(e.getMessage());			
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+			
+		} finally  {
+			
+			response.setStatus( statusCode );
+			// response body
+			PrintWriter out = response.getWriter();		               // out se encarga de poder escribir datos en el body
+			String jsonResponseBody = new Gson().toJson(reponseBody);		   // conversion de Java a Json
+			out.print(jsonResponseBody.toString()); 	
+			out.flush();       
+		}	
 		
-		LOG.debug("mirar pathInfo:" + pathInfo + " para saber si es listado o detalle" );
 		
-		//obtener productos de la BD
-		ArrayList<Producto> lista = (ArrayList<Producto>) productoDao.getAll();
 		
-		// prepara la response		
-		response.setContentType("application/json"); 
-		response.setCharacterEncoding("utf-8");
 		
-		// response body
-		PrintWriter out = response.getWriter();		               // out se encarga de poder escribir datos en el body
-		String jsonResponseBody = new Gson().toJson(lista);		   // conversion de Java a Json
-		out.print(jsonResponseBody.toString()); 	
-		out.flush();                                               // termina de escribir datos en response body
 		
-		// response status code
-		response.setStatus( HttpServletResponse.SC_OK );
+		
+		
+		                                        // termina de escribir datos en response body
+		
+		
 		
 	}
 
