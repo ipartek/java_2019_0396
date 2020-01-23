@@ -172,9 +172,8 @@ public class ProductoDAO implements IProductoDAO {
 			registro = this.getById(id); // recuperar
 
 			int affectedRows = pst.executeUpdate(); // eliminar
-			if (affectedRows != 1) {
-				registro = null;
-				throw new Exception("No se puede eliminar " + registro);
+			if (affectedRows != 1) {				
+				throw new Exception("No se puede eliminar producto con id " + id);
 			}
 
 		}
