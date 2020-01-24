@@ -26,10 +26,32 @@ import com.ipartek.formacion.supermercado.pojo.ResponseMensaje;
 import com.ipartek.formacion.supermercado.utils.Utilidades;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Contact;
+import io.swagger.annotations.Info;
+import io.swagger.annotations.License;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 
-/**
- * Servlet implementation class ProductoRestController
- */
+
+
+@SwaggerDefinition(
+        info = @Info(
+                description = "This is a sample server",
+                version = "1.0.0",
+                title = "Swagger Sample Servlet",
+                termsOfService = "http://swagger.io/terms/",
+                contact = @Contact(name = "Sponge-Bob", email = "apiteam@swagger.io", url = "http://swagger.io"),
+                license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")
+        ),
+        consumes = {"application/json", "application/xml"},
+        produces = {"application/json", "application/xml"},
+        schemes = {SwaggerDefinition.Scheme.HTTP, SwaggerDefinition.Scheme.HTTPS},
+        tags = {@Tag(name = "users", description = "Operations about user")}
+)
+
+@Api(value = "/producto/", description = "crud para productos")
 @WebServlet( { "/producto/*" } )
 public class ProductoRestController extends HttpServlet {
 	
@@ -77,7 +99,7 @@ public class ProductoRestController extends HttpServlet {
 		pathInfo = request.getPathInfo();
 		
 		try { 
-			
+			idProducto = -1;
 			idProducto = Utilidades.obtenerId(pathInfo);
 			
 		    // llama a doGEt, doPost, doPut, doDelete
@@ -107,12 +129,29 @@ public class ProductoRestController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@ApiOperation(httpMethod = "GET", value = "Resource to get a user", response = Producto.class, nickname = "getUser")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		if ( idProducto != -1 ) {				
-			detalle(idProducto);				
+		// detalle
+		if ( idProducto != -1 ) {	
+			
+			reponseBody = productoDao.getById(idProducto);
+			if ( reponseBody != null ) {
+				statusCode = HttpServletResponse.SC_OK;
+			}else {
+				reponseBody = null;
+				statusCode = HttpServletResponse.SC_NOT_FOUND;
+			}
+			
+		// listado	
 		}else {			
-			listar();
+			ArrayList<Producto> productos  = (ArrayList<Producto>) productoDao.getAll();
+			reponseBody = productos;
+			if (  productos.isEmpty()  ) {					
+				statusCode = HttpServletResponse.SC_NO_CONTENT;
+			}else {
+				statusCode = HttpServletResponse.SC_OK;
+			}
 		}			
 		
 	}
@@ -134,9 +173,19 @@ public class ProductoRestController extends HttpServlet {
 			Set<ConstraintViolation<Producto>>  validacionesErrores = validator.validate(producto);		
 			if ( validacionesErrores.isEmpty() ) {
 		
-				Producto pNuevo = productoDao.create(producto);
-				statusCode =  HttpServletResponse.SC_CREATED;
-				reponseBody = pNuevo;
+				Producto productoGuardar = null;
+				// modificar producto
+				if ( idProducto == -1 ) {
+					productoGuardar = productoDao.update(idProducto, producto);
+					statusCode =  HttpServletResponse.SC_OK;
+					
+				// crear nuevo producto	
+				}else {
+					productoGuardar = productoDao.create(producto);
+					statusCode =  HttpServletResponse.SC_CREATED;
+				}				
+				
+				reponseBody = productoGuardar;
 				
 			}else {
 				
@@ -172,16 +221,13 @@ public class ProductoRestController extends HttpServlet {
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOG.debug("PUT modificar recurso");
-		response.setStatus( HttpServletResponse.SC_NOT_IMPLEMENTED );
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOG.debug("DELETE eliminar recurso");
-		
 		
 		try {
 			
@@ -200,26 +246,6 @@ public class ProductoRestController extends HttpServlet {
 	}
 
 	
-	private void detalle(int id) {
-		
-		reponseBody = productoDao.getById(id);
-		if ( reponseBody != null ) {
-			statusCode = HttpServletResponse.SC_OK;
-		}else {
-			reponseBody = null;
-			statusCode = HttpServletResponse.SC_NOT_FOUND;
-		}
-	}
-	
-	private void listar() {
-		
-		ArrayList<Producto> productos  = (ArrayList<Producto>) productoDao.getAll();
-		reponseBody = productos;
-		if (  productos.isEmpty()  ) {					
-			statusCode = HttpServletResponse.SC_NO_CONTENT;
-		}else {
-			statusCode = HttpServletResponse.SC_OK;
-		}
-	}
+
 	
 }

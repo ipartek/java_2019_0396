@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ipartek.formacion</groupId>
-	<artifactId>supermecado-rest</artifactId>
+	<artifactId>supermercado-rest</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1</version>
-	<name>supermecado-rest</name>
+	<name>supermercado-rest</name>
 
 
 	<!-- variables comunes para todo el POM -->
@@ -17,6 +17,9 @@
 		<javax.servlet.api>3.0.1</javax.servlet.api>
 		<javax.servlet.jsp.version>2.2</javax.servlet.jsp.version>
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+
+	    <swagger-version>1.5.22-SNAPSHOT</swagger-version>
+    	<swagger-ui-version>2.1.4</swagger-ui-version>		
 	</properties>
 
 	<!-- librerias que vamos a usar u otros proyectos maven -->
@@ -92,6 +95,16 @@
 			<version>5.2.4.Final</version>
 		</dependency>
 
+		<!-- swagger -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-servlet</artifactId>
+			<version>${swagger-version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+
 
 		<!-- Testing -->
 		<dependency>
@@ -138,6 +151,6 @@
 		</plugins>
 
 
-		<finalName>supermecado-rest</finalName>
+		<finalName>supermercado-rest</finalName>
 	</build>
 </project>

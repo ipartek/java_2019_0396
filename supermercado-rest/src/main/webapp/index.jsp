@@ -8,3 +8,5 @@
 </ul>
 
 <p>*Resto de metodos DELETE, POST y PUT hay que probarlos desde JavaScript o postman</p>
+
+<a href="swagger.html">Documentacion con Swagger</a>
