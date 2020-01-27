@@ -40,7 +40,8 @@ botonEL.addEventListener("click", ()=> {
                     resultadoEL.innerHTML = `id= ${producto.id} nombre=${producto.nombre}`;
 
                     document.getElementById('nombre').innerHTML = producto.nombre;
-                    document.getElementById('imagen').src = 'https://picsum.photos/300';
+                    document.getElementById('imagen').src = producto.imagen;
+                    document.getElementById('descripcion').innerHTML = producto.descripcion;
 
                 }
                 

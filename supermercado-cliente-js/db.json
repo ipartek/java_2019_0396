@@ -2,11 +2,15 @@
   "productos":[
     {
       "id": 1,
-      "nombre": "cafe"
+      "nombre": "cafe",
+      "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/251px-A_small_cup_of_coffee.JPG",
+      "descripcion": "El café es la bebida que se obtiene a partir de los granos tostados y molidos de los frutos de la planta del café (cafeto). Es una bebida altamente estimulante por ..."
     },
     {
       "id": 2,
-      "nombre": "leche"
+      "nombre": "leche",
+      "imagen": "https://ichef.bbci.co.uk/news/ws/410/amz/worldservice/live/assets/images/2014/11/05/141105131956_leche_624x351_thinkstock.jpg",
+      "descripcion": "La leche (en latín: lac, 'leche') es una secreción nutritiva de color blanquecino opaco producida por las células secretoras de las glándulas mamarias de los ..."
     }
   ],
   "posts": [

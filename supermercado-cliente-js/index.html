@@ -14,13 +14,15 @@
 
         <div class="row">
 
-            <div class="col">
-                <p>Escribe un id del producto deseado, dejalo vacio si quieres todos</p>
-                <input type="text" id="idProducto" placeholder="id">
-                <button id="boton">Consultar</button>
+            <div class="col p-2">
+                <p>Escribe un id del producto deseado</p>
+                <div class="form-group row">
+                    <input type="text" id="idProducto" placeholder="id" class="form-control col-4">
+                    <button id="boton" class="btn btn-primary offset-1 col-4">Consultar</button>
+                </div>    
         
                 <p>Resultado:</p>
-                <textarea id="resultado" cols="30" rows="10"></textarea>
+                <textarea id="resultado" cols="30" rows="10" class="form-control"></textarea>
             </div>
 
             <div class="col">
@@ -28,7 +30,7 @@
                     <img id="imagen" src="https://picsum.photos/300/300" class="card-img-top" alt="imagen producto">
                     <div class="card-body">
                       <h5 class="card-title" id="nombre">Nombre</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>                     
+                      <p id="descripcion" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>                     
                     </div>
                   </div>
             </div>
