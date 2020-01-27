@@ -1,17 +1,43 @@
 console.trace('empieza script');
 
-const ENDPOINT = 'http://localhost:3000/productos/';
+const ENDPOINT = 'http://localhost:8080/supermercado-rest/producto/';
 document.getElementById('endpoint').innerHTML = ENDPOINT;
 
 //selecionar elementos por id
 let inputEL = document.getElementById('idProducto');
 let botonEL = document.getElementById('boton');
 let resultadoEL = document.getElementById('resultado');
+let listaEL = document.getElementById('listaProductos');
 
 
 window.onload = function() {
-    console.trace('DOM Ready!!!!');
+    console.trace('DOM Ready, hemos esperado a que carge todo el HTML, CSS y JS !!!!');
+    cargarProductos();
 };
+
+
+function cargarProductos(){
+    console.log('cargarProductos');
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if ( xhr.readyState === 4 && xhr.status === 200 ){
+            let productos = JSON.parse(xhr.responseText);
+            console.debug("producto en json %o" , productos);
+            listaEL.innerHTML = "";  // limpiar lista
+            for( let p of productos ){                
+                listaEL.innerHTML += `<li class="list-group-item">${p.nombre}</li>`;
+            }
+
+        }
+    }
+    xhr.open('Get', `${ENDPOINT}` );
+    xhr.send();    
+    console.debug(`GET ${ENDPOINT}`);
+    
+   
+
+}
 
 
 // registrar evento click para el boton
@@ -61,6 +87,7 @@ botonEL.addEventListener("click", ()=> {
            
         xhr.open('Get', `${ENDPOINT}${inputEL.value}` );
         xhr.send();  // Cuidado es ASINCRONO !!!!!
+        console.debug(`GET ${ENDPOINT}${inputEL.value}`);
 
        
     }// botonEL.addEventListener
