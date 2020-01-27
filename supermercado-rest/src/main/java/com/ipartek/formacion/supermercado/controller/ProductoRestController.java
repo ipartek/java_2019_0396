@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,32 +27,8 @@ import com.ipartek.formacion.supermercado.pojo.ResponseMensaje;
 import com.ipartek.formacion.supermercado.utils.Utilidades;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Contact;
-import io.swagger.annotations.Info;
-import io.swagger.annotations.License;
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Tag;
 
 
-
-@SwaggerDefinition(
-        info = @Info(
-                description = "This is a sample server",
-                version = "1.0.0",
-                title = "Swagger Sample Servlet",
-                termsOfService = "http://swagger.io/terms/",
-                contact = @Contact(name = "Sponge-Bob", email = "apiteam@swagger.io", url = "http://swagger.io"),
-                license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")
-        ),
-        consumes = {"application/json", "application/xml"},
-        produces = {"application/json", "application/xml"},
-        schemes = {SwaggerDefinition.Scheme.HTTP, SwaggerDefinition.Scheme.HTTPS},
-        tags = {@Tag(name = "users", description = "Operations about user")}
-)
-
-@Api(value = "/producto/", description = "crud para productos")
 @WebServlet( { "/producto/*" } )
 public class ProductoRestController extends HttpServlet {
 	
@@ -129,7 +106,7 @@ public class ProductoRestController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@ApiOperation(httpMethod = "GET", value = "Resource to get a user", response = Producto.class, nickname = "getUser")
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		// detalle

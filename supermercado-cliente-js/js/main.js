@@ -1,4 +1,4 @@
-console.log('empiza script');
+console.trace('empieza script');
 
 const ENDPOINT = 'http://localhost:3000/productos/';
 document.getElementById('endpoint').innerHTML = ENDPOINT;
@@ -7,6 +7,12 @@ document.getElementById('endpoint').innerHTML = ENDPOINT;
 let inputEL = document.getElementById('idProducto');
 let botonEL = document.getElementById('boton');
 let resultadoEL = document.getElementById('resultado');
+
+
+window.onload = function() {
+    console.trace('DOM Ready!!!!');
+};
+
 
 // registrar evento click para el boton
 botonEL.addEventListener("click", ()=> {
