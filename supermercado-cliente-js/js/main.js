@@ -6,8 +6,8 @@ document.getElementById('endpoint').innerHTML = ENDPOINT;
 //selecionar elementos por id
 let inputEL = document.getElementById('idProducto');
 let botonEL = document.getElementById('boton');
-let resultadoEL = document.getElementById('resultado');
 let listaEL = document.getElementById('listaProductos');
+let resultadoEL = document.getElementById('resultado');
 
 
 window.onload = function() {
@@ -26,7 +26,7 @@ function cargarProductos(){
             console.debug("producto en json %o" , productos);
             listaEL.innerHTML = "";  // limpiar lista
             for( let p of productos ){                
-                listaEL.innerHTML += `<li class="list-group-item">${p.nombre}</li>`;
+                listaEL.innerHTML += `<li class="list-group-item"><b>${p.id}</b> ${p.nombre}</li>`;
             }
 
         }
@@ -35,9 +35,8 @@ function cargarProductos(){
     xhr.send();    
     console.debug(`GET ${ENDPOINT}`);
     
-   
+}// cargarProductos
 
-}
 
 
 // registrar evento click para el boton
@@ -47,33 +46,20 @@ botonEL.addEventListener("click", ()=> {
     if( inputEL.value === "" ){
         resultadoEL.innerHTML = 'Escribe algo por favor';
     }else{
-
         // llamada Ajax
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-
-            /*
-            console.debug( "state:" + xhr.readyState  );
-            console.debug( "status:" + xhr.status  );
-            console.debug( "responseText:" + xhr.responseText  );
-            */
-
             if ( xhr.readyState === 4 ){  // esperar a completar la peticion
-
-               
 
                 if ( xhr.status === 200 ){ 
 
                     //convetir de texto a json
                     let producto = JSON.parse(xhr.responseText);
 
-                    //pintamos en texarea
-                    //resultadoEL.innerHTML = "id= " + producto.id + " nombre=" + producto.nombre;
-                    resultadoEL.innerHTML = `id= ${producto.id} nombre=${producto.nombre}`;
-
                     document.getElementById('nombre').innerHTML = producto.nombre;
                     document.getElementById('imagen').src = producto.imagen;
                     document.getElementById('descripcion').innerHTML = producto.descripcion;
+                    resultadoEL.innerHTML = 'producto cargado desde el servicio rest';
 
                 }
                 
@@ -89,8 +75,8 @@ botonEL.addEventListener("click", ()=> {
         xhr.send();  // Cuidado es ASINCRONO !!!!!
         console.debug(`GET ${ENDPOINT}${inputEL.value}`);
 
-       
-    }// botonEL.addEventListener
+    }
 
 
-});
+});// botonEL.addEventListener
+
