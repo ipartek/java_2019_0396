@@ -20,18 +20,18 @@ public class ProductoDAO implements IProductoDAO {
 
 	private static ProductoDAO INSTANCE;
 
-	private static final String SQL_GET_ALL = "SELECT p.id 'id_producto', p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
+	private static final String SQL_GET_ALL = "SELECT p.id 'id_producto', imagen, descripcion, p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
 			+ " FROM producto p, usuario u " + " WHERE p.id_usuario = u.id " + " ORDER BY p.id DESC LIMIT 500;";
 
-	private static final String SQL_GET_ALL_BY_USER = "SELECT p.id 'id_producto', p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
+	private static final String SQL_GET_ALL_BY_USER = "SELECT p.id 'id_producto',imagen, descripcion, p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
 			+ " FROM producto p, usuario u " + " WHERE p.id_usuario = u.id AND u.id = ? "
 			+ " ORDER BY p.id DESC LIMIT 500;";
 
-	private static final String SQL_GET_BY_ID = "SELECT p.id 'id_producto', p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
+	private static final String SQL_GET_BY_ID = "SELECT p.id 'id_producto',imagen, descripcion, p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
 			+ " FROM producto p, usuario u " + " WHERE p.id_usuario = u.id AND p.id= ? "
 			+ " ORDER BY p.id DESC LIMIT 500;";
 	
-	private static final String SQL_GET_BY_ID_BY_USER = "SELECT p.id 'id_producto', p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
+	private static final String SQL_GET_BY_ID_BY_USER = "SELECT p.id 'id_producto',imagen, descripcion, p.nombre 'nombre_producto', u.id 'id_usuario', u.nombre 'nombre_usuario' "
 			+ " FROM producto p, usuario u " + " WHERE p.id_usuario = u.id AND p.id= ? AND u.id = ? "
 			+ " ORDER BY p.id DESC LIMIT 500;";
 	
@@ -310,6 +310,8 @@ public class ProductoDAO implements IProductoDAO {
 		Producto p = new Producto();
 		p.setId(rs.getInt("id_producto"));
 		p.setNombre(rs.getString("nombre_producto"));
+		p.setImagen(rs.getString("imagen"));
+		p.setDescripcion(rs.getString("descripcion"));
 
 		Usuario u = new Usuario();
 		u.setId(rs.getInt("id_usuario"));
