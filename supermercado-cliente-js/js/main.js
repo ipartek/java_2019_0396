@@ -1,5 +1,8 @@
 console.log('empiza script');
 
+const ENDPOINT = 'http://localhost:3000/productos/';
+document.getElementById('endpoint').innerHTML = ENDPOINT;
+
 //selecionar elementos por id
 let inputEL = document.getElementById('idProducto');
 let botonEL = document.getElementById('boton');
@@ -25,14 +28,20 @@ botonEL.addEventListener("click", ()=> {
 
             if ( xhr.readyState === 4 ){  // esperar a completar la peticion
 
-                //convetir de texto a json
-                let producto = JSON.parse(xhr.responseText);
+               
 
                 if ( xhr.status === 200 ){ 
+
+                    //convetir de texto a json
+                    let producto = JSON.parse(xhr.responseText);
 
                     //pintamos en texarea
                     //resultadoEL.innerHTML = "id= " + producto.id + " nombre=" + producto.nombre;
                     resultadoEL.innerHTML = `id= ${producto.id} nombre=${producto.nombre}`;
+
+                    document.getElementById('nombre').innerHTML = producto.nombre;
+                    document.getElementById('imagen').src = 'https://picsum.photos/300';
+
                 }
                 
                 if (xhr.status === 404 ){ 
@@ -41,13 +50,13 @@ botonEL.addEventListener("click", ()=> {
 
             }
            
-        }
+        }// onreadystatechange
            
-        xhr.open('Get', `http://localhost:3000/productos/${inputEL.value}` );
+        xhr.open('Get', `${ENDPOINT}${inputEL.value}` );
         xhr.send();  // Cuidado es ASINCRONO !!!!!
 
        
-    }    
+    }// botonEL.addEventListener
 
 
 });

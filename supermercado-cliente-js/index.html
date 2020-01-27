@@ -5,16 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Cliente en Vanilla Javascript</h1>
+    <main class="container">
+        <h1>Cliente en Vanilla Javascript</h1>
+        <p>Endpoint <b id="endpoint"></b></p>
 
-    <p>Escribe un id del producto deseado, dejalo vacio si quieres todos</p>
-    <input type="text" id="idProducto" placeholder="id">
-    <button id="boton">Consultar</button>
+        <div class="row">
 
-    <p>Resultado:</p>
-    <textarea id="resultado" cols="30" rows="10"></textarea>
+            <div class="col">
+                <p>Escribe un id del producto deseado, dejalo vacio si quieres todos</p>
+                <input type="text" id="idProducto" placeholder="id">
+                <button id="boton">Consultar</button>
+        
+                <p>Resultado:</p>
+                <textarea id="resultado" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img id="imagen" src="https://picsum.photos/300/300" class="card-img-top" alt="imagen producto">
+                    <div class="card-body">
+                      <h5 class="card-title" id="nombre">Nombre</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>                     
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+
+
+        
+
+        
+    </main>    
 
     <script src="js/main.js"></script>
 
