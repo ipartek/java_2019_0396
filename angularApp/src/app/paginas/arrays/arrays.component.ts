@@ -61,10 +61,12 @@ export class ArraysComponent implements OnInit {
     this.frutasAmarillasNombre = this.frutas.filter( el => el.colores.includes('amarillo') ).map( el => el.nombre);
     this.frutasAmarillasPrecio = this.frutas.filter( el => el.colores.indexOf('amarillo') !== -1 ).reduce( (p, c) => p + c.precio , 0);
     this.fruta1verde = this.frutas.find( el => el.colores.indexOf('verde') !== -1 );
-    this.colores = this.frutas.reduce( (p, c) => {
-        console.log(...c.colores);
-        return [p, ...c.colores];
-    }, [] );
+    this.colores = this.frutas.reduce( (p, c, i, a) => {
+        return p.concat(c.colores);
+    }, [] ).filter( (el, index, array) => {
+        console.debug(el, index, array);
+        return array.indexOf(el) === index;
+      });
   }
 
 }
