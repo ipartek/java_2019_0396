@@ -34,6 +34,8 @@ function cargarProductos(){
     xhr.open('Get', `${ENDPOINT}` );
     xhr.send();    
     console.debug(`GET ${ENDPOINT}`);
+
+   
     
 }// cargarProductos
 

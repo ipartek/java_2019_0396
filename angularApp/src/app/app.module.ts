@@ -10,6 +10,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { JuegoComponent } from './paginas/juego/juego.component';
+import { ArraysComponent } from './paginas/arrays/arrays.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JuegoComponent } from './paginas/juego/juego.component';
     NavbarComponent,
     InicioComponent,
     ProductosComponent,
-    JuegoComponent
+    JuegoComponent,
+    ArraysComponent
   ],
   imports: [
     BrowserModule,
