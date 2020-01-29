@@ -25,7 +25,7 @@ export class PokemonRestComponent implements OnInit {
   ngOnInit() {
     console.trace('PokemonRestComponent ngOnInit');
 
-    //llamadas a los servicios
+    // llamadas a los servicios
 
     // a un Observable nos tenmos que suscribir
     // cuando llamamos a un Obervable tenemos 3 posibles metodos
