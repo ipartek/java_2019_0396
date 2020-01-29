@@ -3,14 +3,14 @@ export class Pokemon {
     private _id: number;
     private _imagen: string;
     private _nombre: string;
-    private _habilidad: string;
-    
+    private _habilidades: Array<string>;
+
 
     constructor( nombre: string ) {
         this._id = 0;
         this._nombre = nombre;
         this._imagen = 'https://cdn4.iconfinder.com/data/icons/gaming-27/300/gaming-fun-entertainment-freetime-pokemon-512.png';
-        this._habilidad = '';
+        this._habilidades = [];
     }
 
     public get id(): number {
@@ -34,12 +34,14 @@ export class Pokemon {
         this._imagen = value;
     }
 
-    public get habilidad(): string {
-        return this._habilidad;
+    public get habilidades(): Array<string> {
+        return this._habilidades;
     }
-    public set habilidad(value: string) {
-        this._habilidad = value;
+    public set habilidades(value: Array<string>) {
+        this._habilidades = value;
     }
+    
+    
 
 
 

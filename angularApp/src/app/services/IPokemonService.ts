@@ -10,10 +10,10 @@ export interface IPokemonService {
     getPokemon( nombre: string): Observable<any>;
 
     /**
-     * recupera un json con las habilidades de un Pokemon
-     * @param id: number identificador del pokemon
-     * @see GET /api/v2/ability/{id}/
+     * recupera el nombre de la habilidad en castellano
+     * @param nombreHabilidad: nombre habilidad en ingles
+     * @see GET /api/v2/ability/{name}/
      */
-    getHabilidad( id: number): Observable<any>;
+    getHabilidad( nombreHabilidad: number): Observable<any>;
 
 }

@@ -39,16 +39,23 @@ export class PokemonRestComponent implements OnInit {
         this.pokemon.nombre = data.name;
         this.pokemon.imagen = data.sprites.front_default;
 
-        this.mensaje = 'Pokemon cargado desde https://pokeapi.co';
+        const habilidadesNames = data.abilities.map( el => el.ability.name );
+        console.debug('habilidades en ingles %o', habilidadesNames);
 
-        // conseguir su habilidad
-        this.pokemonService.getHabilidad( this.pokemon.id ).subscribe(
-          data => {
-            console.debug('habilidades %o' ,  data);
-            const habilidad = data.names.find( el => el.language.name === 'es' );
-            this.pokemon.habilidad = habilidad.name;
+        habilidadesNames.forEach( habilidad => {
+            // conseguir su habilidad en castellano
+            this.pokemonService.getHabilidad( habilidad ).subscribe(
+              json => {
+                console.debug('habilidad %o' ,  json);
+                const habilidadCastellano = json.names.find( el => el.language.name === 'es' );
+                console.debug('recupera habiliada en castellano %o', habilidadCastellano);
+                this.pokemon.habilidades.push( habilidadCastellano.name );
+            });
+
+
         });
 
+        this.mensaje = 'Pokemon cargado desde https://pokeapi.co';
 
       },
       error => {

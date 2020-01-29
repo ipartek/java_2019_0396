@@ -21,8 +21,8 @@ export class PokemonService implements IPokemonService {
     return this.http.get(url);
   }
 
-  getHabilidad(id: number): Observable<any> {
-    const url = `https://pokeapi.co/api/v2/ability/${id}/`;
+  getHabilidad( nombreHabilidad : number): Observable<any> {
+    const url = `https://pokeapi.co/api/v2/ability/${nombreHabilidad}/`;
     console.trace('PokemonService getHabilidad ' + url);
     return this.http.get(url);
   }

@@ -8,6 +8,9 @@
     <img src="{{pokemon.imagen}}" class="card-img-top" alt="imagen pokemon">
     <div class="card-body">
       <h5 class="card-title">{{pokemon.id}} {{pokemon.nombre}}</h5>
-      <p class="card-text">Habilidad <b>{{pokemon.habilidad}}</b></p>     
+      <ol>
+        <h3>Habiliades</h3>
+        <li *ngFor="let h of pokemon.habilidades">{{h}}</li>
+      </ol>      
     </div>
   </div>
