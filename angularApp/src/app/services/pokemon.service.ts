@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { IPokemonService } from './IPokemonService';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +21,10 @@ export class PokemonService implements IPokemonService {
     return this.http.get(url);
   }
 
-  getAll() {
-    throw new Error("Method not implemented.");
-  }
-  getById( id: number ) {
-    throw new Error("Method not implemented.");
-  }
-
-  getByName( nombre: string) {
-    throw new Error("Method not implemented.");
+  getHabilidad(id: number): Observable<any> {
+    const url = `https://pokeapi.co/api/v2/ability/${id}/`;
+    console.trace('PokemonService getHabilidad ' + url);
+    return this.http.get(url);
   }
 
 

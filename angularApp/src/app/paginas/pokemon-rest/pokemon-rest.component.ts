@@ -10,12 +10,13 @@ import { PokemonService } from '../../services/pokemon.service';
 export class PokemonRestComponent implements OnInit {
 
   pokemon: Pokemon;
- 
+  mensaje: string;
 
   constructor( private pokemonService: PokemonService) {
 
     console.trace('PokemonRestComponent constructor');
-    this.pokemon = new Pokemon('pikachu');
+    this.mensaje = '';
+    this.pokemon = new Pokemon('');
    // this.pokemon.nombre = '';  // setter
     console.debug(this.pokemon);
 
@@ -34,10 +35,25 @@ export class PokemonRestComponent implements OnInit {
       data => {
         console.debug('peticion correcta data %o', data);
         // mapear de Jon a Pokemon
+        this.pokemon.id = data.id;
+        this.pokemon.nombre = data.name;
+        this.pokemon.imagen = data.sprites.front_default;
+
+        this.mensaje = 'Pokemon cargado desde https://pokeapi.co';
+
+        // conseguir su habilidad
+        this.pokemonService.getHabilidad( this.pokemon.id ).subscribe(
+          data => {
+            console.debug('habilidades %o' ,  data);
+            const habilidad = data.names.find( el => el.language.name === 'es' );
+            this.pokemon.habilidad = habilidad.name;
+        });
+
 
       },
       error => {
         console.warn('peticion ERRONEA data %o', error);
+        this.mensaje = 'No existe pokemon X';
       },
       () => {
         console.trace('esto se hace siempre');

@@ -3,11 +3,21 @@ export class Pokemon {
     private _id: number;
     private _imagen: string;
     private _nombre: string;
+    private _habilidad: string;
+    
 
     constructor( nombre: string ) {
         this._id = 0;
         this._nombre = nombre;
         this._imagen = 'https://cdn4.iconfinder.com/data/icons/gaming-27/300/gaming-fun-entertainment-freetime-pokemon-512.png';
+        this._habilidad = '';
+    }
+
+    public get id(): number {
+        return this._id;
+    }
+    public set id(value: number) {
+        this._id = value;
     }
 
     public get nombre(): string {
@@ -24,11 +34,11 @@ export class Pokemon {
         this._imagen = value;
     }
 
-    public get nombre_1(): string {
-        return this._nombre;
+    public get habilidad(): string {
+        return this._habilidad;
     }
-    public set nombre_1(value: string) {
-        this._nombre = value;
+    public set habilidad(value: string) {
+        this._habilidad = value;
     }
 
 
