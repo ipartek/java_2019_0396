@@ -54,7 +54,6 @@ DELETE FROM `pokemon`;
 INSERT INTO `pokemon` (`id`, `nombre`) VALUES
 	(4, 'bulbasur'),
 	(3, 'charmander'),
-	(1, 'lucario'),
 	(2, 'pikachu');
 /*!40000 ALTER TABLE `pokemon` ENABLE KEYS */;
 
@@ -66,16 +65,13 @@ CREATE TABLE IF NOT EXISTS `pokemon_habilidades` (
   PRIMARY KEY (`id_pokemon`,`id_hablidad`),
   KEY `FK_habilidad` (`id_hablidad`),
   CONSTRAINT `FK_habilidad` FOREIGN KEY (`id_hablidad`) REFERENCES `habilidad` (`id`),
-  CONSTRAINT `FK_pokemon` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id`)
+  CONSTRAINT `FK_pokemon` FOREIGN KEY (`id_pokemon`) REFERENCES `pokemon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla pokemon.pokemon_habilidades: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla pokemon.pokemon_habilidades: ~6 rows (aproximadamente)
 DELETE FROM `pokemon_habilidades`;
 /*!40000 ALTER TABLE `pokemon_habilidades` DISABLE KEYS */;
 INSERT INTO `pokemon_habilidades` (`id_pokemon`, `id_hablidad`) VALUES
-	(1, 1),
-	(1, 2),
-	(1, 3),
 	(2, 4),
 	(2, 5),
 	(3, 1),

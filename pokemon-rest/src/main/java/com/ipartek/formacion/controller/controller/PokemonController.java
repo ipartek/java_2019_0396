@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.ipartek.formacion.model.PokemonDAO;
 import com.ipartek.formacion.model.pojo.Pokemon;
@@ -22,6 +24,7 @@ import com.ipartek.formacion.model.pojo.Pokemon;
 public class PokemonController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOG = Logger.getLogger(PokemonController.class);
     private static PokemonDAO dao;   
   
 
@@ -58,17 +61,50 @@ public class PokemonController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Pokemon> pokemons = (ArrayList<Pokemon>) dao.getAll();
+		Object responseBody = null;
+		String pathinfo = request.getPathInfo();
+		String nombre = request.getParameter("nombre");
+		int statusCode = HttpServletResponse.SC_OK;
 		
-		try( PrintWriter out = response.getWriter() ){
+		LOG.debug("pathinfo= " + pathinfo );
+		LOG.debug("Parametro nombre= " + nombre );
+		
+		
+		
+		if ( nombre != null ) {
+			ArrayList<Pokemon> pokemons = (ArrayList<Pokemon>) dao.getByNombre(nombre);
 			
-			Gson json = new Gson();
-			out.print( json.toJson(pokemons) );
-			out.flush();
+			if ( pokemons.isEmpty() ) {
+				statusCode = HttpServletResponse.SC_NO_CONTENT;
+			}
+			
+			responseBody = pokemons;
+			
+		}else if ( pathinfo == null || "/".equals(pathinfo) ){
+			responseBody = (ArrayList<Pokemon>) dao.getAll();
+			
+		}else {
+			int id = Integer.parseInt(pathinfo.split("/")[1]);
+			responseBody = dao.getById(id);
+			if ( responseBody == null ) {
+				statusCode = HttpServletResponse.SC_NOT_FOUND;
+			}
 			
 		}
 		
-		response.setStatus(200);
+		response.setStatus(statusCode);
+		
+		try( PrintWriter out = response.getWriter() ){
+			
+			if ( responseBody != null ) {
+				Gson json = new Gson();
+				out.print( json.toJson(responseBody) );
+				out.flush();
+			}	
+			
+		}
+		
+		
 		
 		
 	}
