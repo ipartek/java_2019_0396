@@ -1,0 +1,63 @@
+
+// soporta comentatios de linea, los cuales luego no se ven en .CSS
+
+// Variables
+
+$color_pink : #da9393;
+$color_green: #00FF00;
+$color_black: #000;
+
+
+h1 {
+    color: $color_pink; // usamos la variable
+}
+
+// Nesting =>  p code
+p {
+    code {
+        color: $color_green;
+        background-color: $color_black;
+        padding: 2px 3px;
+    }
+}
+
+// mixins o funciones para reutilizar
+@mixin redondear( $radio, $color ) {
+    border-radius: $radio;   
+}
+
+
+
+.borde10{
+    @include redondear(10px, $color_pink );  // usar mixin
+}
+
+.borde50{
+    @include redondear(50%, #FF0000);
+}
+
+// Extend/Inheritance
+
+%boton-basico {
+    border: 1px solid $color_black;
+    padding: 10px;
+    color: #333;
+    @include redondear(25%, $color_black);
+
+    &:hover {  // usar pseudeselector mediante & para nestting
+        background-color: $color_pink;
+    }
+}
+
+.boton-verde{
+    @extend %boton-basico;
+    color: $color_green;
+}
+
+.boton-rojo{
+    @extend %boton-basico;
+    color: $color_pink;
+}
+
+
+

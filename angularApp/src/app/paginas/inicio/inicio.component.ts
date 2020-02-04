@@ -8,29 +8,39 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 })
 export class InicioComponent implements OnInit {
 
-  pokemon: any;
+  titulo: string;
+  numeroClicks: number;
+  visible: boolean;
+  jugador: string;
 
   constructor( private pokemonService: PokemonService ) {
-
     console.trace('InicioComponent constructor');
-    this.pokemon = {};
+    this.titulo = 'Weelcome 2 Hell';
+    this.numeroClicks = 0;
+    this.visible = false;
+    this.jugador = '';
 
   }// constructor
 
   ngOnInit() {
     console.trace('InicioComponent ngOnInit');
 
-    this.pokemonService.getPokemon('bulbasur').subscribe(
-      data => {
-        console.debug('petición ok %o' , data);
-        this.pokemon = data;
-      },
-      error => console.warn(error),
-      () => {
-        console.trace('petición completa');
-      }
-    );
-
   }// ngOnInit
 
-}
+
+  contarClicks() {
+    console.trace('contarClicks ' + this.jugador);
+    this.numeroClicks++;
+
+  }// contarClicks
+
+
+
+  decirAdios() {
+    console.trace('decirAdios');
+    this.visible = true;
+
+  }// decirAdios
+
+
+} // InicioComponent

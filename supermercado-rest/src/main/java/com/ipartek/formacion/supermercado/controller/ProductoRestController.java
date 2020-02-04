@@ -152,7 +152,7 @@ public class ProductoRestController extends HttpServlet {
 		
 				Producto productoGuardar = null;
 				// modificar producto
-				if ( idProducto == -1 ) {
+				if ( idProducto != -1 ) {
 					productoGuardar = productoDao.update(idProducto, producto);
 					statusCode =  HttpServletResponse.SC_OK;
 					
