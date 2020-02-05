@@ -17,6 +17,7 @@ import { EstilosComponent } from './paginas/estilos/estilos.component';
 import { DirectivasComponent } from './paginas/directivas/directivas.component';
 import { FiltrosComponent } from './paginas/filtros/filtros.component';
 import { HelloDirective } from './directives/hello.directive';
+import { SubrayarDirective } from './directives/subrayar.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HelloDirective } from './directives/hello.directive';
     EstilosComponent,
     DirectivasComponent,
     FiltrosComponent,
-    HelloDirective
+    HelloDirective,
+    SubrayarDirective
   ],
   imports: [
     BrowserModule,

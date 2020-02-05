@@ -18,5 +18,22 @@
 <br>
 <span appHello colorTexto="pink" colorFondo="black">Podemos usar la directiva en cualquier etiqueta</span>
 
+<hr>
+<h3>Ejemplo de uso de la Directiva appSubrayar</h3>
+
+<input type="radio" name="color" (click)="colorSeleccionado='pink'">Rosa<br>
+<input type="radio" name="color" (click)="colorSeleccionado='orange'">Naranja<br>
+<input type="radio" name="color" (click)="colorSeleccionado='peru'">Marron<br>
+
+<p>
+    <input type="color" [(ngModel)]="colorSeleccionado" >
+    Eligue color personalizado
+</p>
+
+<p appSubrayar="green">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia magni cupiditate iste, iure laborum quaerat officiis eligendi explicabo quos sequi ratione quo consectetur voluptatem et cumque ut, illum labore praesentium?</p>
+<p [appSubrayar]="'pink'">Beatae fuga, nesciunt ut, quos rem officia est, porro deleniti aspernatur ipsam pariatur iure id possimus aperiam architecto ipsa cum odit debitis veniam unde labore nobis sed. Incidunt, amet itaque.</p>
+<p [appSubrayar]="colorSeleccionado">Voluptatem qui praesentium modi. A expedita minima rem, porro laborum illo rerum magni? Ad, aperiam? Sequi, soluta magnam tenetur officiis sapiente vitae saepe voluptatum id quod dolore quidem adipisci hic?</p>
+
+
 
 
