@@ -1,0 +1,22 @@
+
+
+li{
+
+    display: flex;
+
+    .nombre{
+        font-size: 1.6rem;
+    }
+    .observacion{
+        font-size: 1rem;
+        color: grey;
+    }
+
+    .circle{
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+}

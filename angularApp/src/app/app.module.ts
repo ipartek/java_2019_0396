@@ -18,6 +18,7 @@ import { DirectivasComponent } from './paginas/directivas/directivas.component';
 import { FiltrosComponent } from './paginas/filtros/filtros.component';
 import { HelloDirective } from './directives/hello.directive';
 import { SubrayarDirective } from './directives/subrayar.directive';
+import { AnimalesPipe } from './pipes/animales.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SubrayarDirective } from './directives/subrayar.directive';
     DirectivasComponent,
     FiltrosComponent,
     HelloDirective,
-    SubrayarDirective
+    SubrayarDirective,
+    AnimalesPipe
   ],
   imports: [
     BrowserModule,
