@@ -16,6 +16,7 @@ import { PokemonRestComponent } from './paginas/pokemon-rest/pokemon-rest.compon
 import { EstilosComponent } from './paginas/estilos/estilos.component';
 import { DirectivasComponent } from './paginas/directivas/directivas.component';
 import { FiltrosComponent } from './paginas/filtros/filtros.component';
+import { HelloDirective } from './directives/hello.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FiltrosComponent } from './paginas/filtros/filtros.component';
     PokemonRestComponent,
     EstilosComponent,
     DirectivasComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    HelloDirective
   ],
   imports: [
     BrowserModule,

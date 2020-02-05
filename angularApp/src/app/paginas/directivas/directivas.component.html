@@ -1,1 +1,22 @@
-<p>directivas works!</p>
+<h2>Directivas</h2>
+<a href="https://angular.io/guide/attribute-directives" target="_blank">Documentación Oficial</a>
+<p>Hay tres tipo de directivas en Angualr:</p>
+
+<dl>
+    <dt>Components:</dt>
+    <dd>son directivas con una plantilla de html.</dd>
+    <dt>Estructurales:</dt>
+    <dd>cambian el DOM añdiendo o removiendo elementos, por jemplo *ngIf.</dd>
+    <dt>Attributo:</dt>
+    <dd>cambian la apariencia de un elemento del DOM, por ejemplo NgStyle.</dd>
+</dl>
+  
+<p>Podemos crear nuestras propias directivas usando el comando <code>ng generate directive $nombre_de_nuestra_directiva</code></p>
+
+<p appHello colorTexto="green" colorFondo="black" >En esta etiqueta estamos usando nuestra directiva <code>appHello</code>, mirar la consola para ver las trazas de log</p>
+<br>
+<br>
+<span appHello colorTexto="pink" colorFondo="black">Podemos usar la directiva en cualquier etiqueta</span>
+
+
+
