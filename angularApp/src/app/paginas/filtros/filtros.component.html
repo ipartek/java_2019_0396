@@ -14,9 +14,16 @@
 <h3>Filtrando Listas</h3>
 
 <input type="search" [(ngModel)]="busqueda" placeholder="buscar por nombre">
+{{tipos | json}}
+
+<select [(ngModel)]="tipo">
+    <option selected>TODOS</option>
+    <option *ngFor="let t of tipos">{{t}}</option>
+</select>
+tipo seleccionado {{tipo}}
 
 <ul class="list-group">
-    <li *ngFor="let animal of animales | animalesFiltro : busqueda "
+    <li *ngFor="let animal of animales | animalesFiltro : busqueda : tipo"
         class="list-group-item">
             <img src="{{animal.Imagen}}" class="circle" /> 
             <div>
