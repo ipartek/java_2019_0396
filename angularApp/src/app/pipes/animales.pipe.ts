@@ -14,41 +14,30 @@ export class AnimalesPipe implements PipeTransform {
    */
   transform(datos: any, busqueda: string, tipo: string): any {
 
-    console.debug(datos);
-    console.debug(tipo);
-    console.debug(busqueda);
+    console.debug('AnimalesPipe datos %o', datos);
+    console.debug('AnimalesPipe tipo %s', tipo);
+    console.debug('AnimalesPipe busqueda %s', busqueda);
+    
+    let resultado = datos;
 
+    // filtrar por tipo
+    if ( tipo && tipo !== 'TODOS' ) {
+      resultado = resultado.filter( (el) => el.Tipo === tipo);
+    }
+
+    // filtrar por nombre
     if ( busqueda && '' !== busqueda.trim() ) {
 
-      // filtrar por nombre
       busqueda = busqueda.toUpperCase();
-
-      const resultado = datos.filter( (el) => {
+      resultado = resultado.filter( (el) => {
         console.debug(el);
         const nombre = el.Nombre.toUpperCase();
         return nombre.includes(busqueda);
       });
-
-      // filtrar por tipo
-      if ( tipo && tipo !== 'TODOS' ) { 
-
-        return resultado.filter( (el) => el.Tipo === tipo);
-
-      } else {
-        return resultado;
-      }
-      
-
-    } else {
-
-      if ( tipo && tipo !== 'TODOS' ) {
-        return datos.filter( (el) => el.Tipo === tipo);
-      }else{
-        return datos;
-      }  
-
-      
     }
+
+    return resultado;
+
 
   }// transform
 
