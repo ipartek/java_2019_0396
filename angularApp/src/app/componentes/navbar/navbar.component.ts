@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RUTAS } from 'src/app/app-routing.module';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  rutas: Array<any>;
+
+  constructor() {
+    console.trace('NavbarComponent constructor');
+    this.rutas = RUTAS;
+
+  }// constructor
 
   ngOnInit() {
-  }
+    console.trace('NavbarComponent ngOnInit');
+  }// ngOnInit
 
-}
+}// NavbarComponent

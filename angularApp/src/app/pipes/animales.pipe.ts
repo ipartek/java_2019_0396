@@ -9,7 +9,7 @@ export class AnimalesPipe implements PipeTransform {
    * filtro personalizado para animales
    * @param datos Array<any> con animales
    * @param busqueda palabra a buscar dentro del atributo Nombre
-   * @param tipo para filtar por atributo Tipo
+   * @param tipo para filtar por atributo Tipo, si su valor es 'TODOS' no filtra por tipo
    * @see app/animales.ts json con los datos de los animales
    */
   transform(datos: any, busqueda: string, tipo: string): any {
@@ -17,7 +17,7 @@ export class AnimalesPipe implements PipeTransform {
     console.debug('AnimalesPipe datos %o', datos);
     console.debug('AnimalesPipe tipo %s', tipo);
     console.debug('AnimalesPipe busqueda %s', busqueda);
-    
+
     let resultado = datos;
 
     // filtrar por tipo

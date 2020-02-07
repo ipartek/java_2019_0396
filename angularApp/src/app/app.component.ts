@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GLOBAL } from './global';
 
 
 /**
@@ -16,8 +17,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  //variable
-  title = 'Angular App';
-  
+  title: string;
+  const: any;
+
+
+  constructor() {
+    console.trace('AppComponent constructor');
+    // incializan las variables
+    this.title = 'Angular App';
+    this.const = GLOBAL;
+
+  }
 
 }

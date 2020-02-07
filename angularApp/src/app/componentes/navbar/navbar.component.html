@@ -3,34 +3,11 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
-        ** TODO declarar array para hacer for [ruta, titulo, icono ] **
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a [routerLink]="['/']" routerLinkActive="" class="nav-link">Inicio</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/productos']" routerLinkActive="active" class="nav-link">Productos</a>
-            </li>
-            <li class="nav-item">             
-                <a [routerLink]="['/juego']" routerLinkActive="active" class="nav-link">Juego</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/arrays']" routerLinkActive="active" class="nav-link">Arrays</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/pokemon']" routerLinkActive="active" class="nav-link">Ej. Clase y Rest</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/estilos']" routerLinkActive="active" class="nav-link">Sass</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/directivas']" routerLinkActive="active" class="nav-link">Directivas</a>
-            </li>
-            <li class="nav-item">             
-              <a [routerLink]="['/filtros']" routerLinkActive="active" class="nav-link">Filtros</a>
+            <li class="nav-item" *ngFor="let r of rutas">
+                <a [routerLink]="r.ruta" routerLinkActive="" class="nav-link">{{r.nombre}}</a>
             </li>
           </ul>  
         </div>
