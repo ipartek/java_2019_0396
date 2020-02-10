@@ -14,12 +14,12 @@ export class TareasService implements ITareasService {
 
   }// constructor
 
-  listar(): Observable<any> {
+  listar(): Observable<Tarea[]> {
 
     const url = 'http://localhost:3000/tareas';
     console.debug(`GET ${url}`);
 
-    return this.http.get(url);
+    return this.http.get<Array<Tarea>>(url);
 
   }
   detalle(id: number): Observable<Tarea> {
@@ -29,10 +29,15 @@ export class TareasService implements ITareasService {
     throw new Error("Method not implemented.");
   }
   modificar(tarea: Tarea): Observable<Tarea> {
-    throw new Error("Method not implemented.");
+
+    const url = `http://localhost:3000/tareas/${tarea.id}`;
+    console.debug('PUT %s tarea %o', url, tarea);
+
+    return this.http.put<Tarea>(url, tarea);
+
   }
   eliminar(id: number): Observable<Tarea> {
-    throw new Error("Method not implemented.");
+    console.debug('');
   }
 
 

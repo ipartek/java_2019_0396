@@ -1,14 +1,14 @@
 {
-  "tareas" : [
+  "tareas": [
     {
       "id": 1,
       "titulo": "crear datos en json",
-      "completada": true
+      "completada": false
     },
     {
       "id": 2,
       "titulo": "Crear Modelo con interfaz",
-      "completada": false
+      "completada": true
     },
     {
       "id": 3,

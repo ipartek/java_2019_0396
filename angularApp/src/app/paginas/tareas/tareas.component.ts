@@ -20,12 +20,35 @@ export class TareasComponent implements OnInit {
   ngOnInit() {
     console.trace('TareasComponent ngOnInit');
 
+    this.cargarTareas();
+
+  }// ngOnInit
+
+
+  editarEstado(tarea: Tarea) {
+    console.debug('click %o', tarea);
+    tarea.completada = !tarea.completada;
+
+    this.servicioTarea.modificar(tarea).subscribe( () => this.cargarTareas() );
+
+
+  }// editarEstado
+
+
+  /**
+   * Llama al Serviucio para cargar todas las tareas
+   * Nos va  aserivr para refrescar la lista
+   */
+  private cargarTareas(): void {
+    console.trace('cargarTareas');
+
     // llamar al service para obtener tareas
     this.servicioTarea.listar().subscribe( datos => {
       console.debug('esto se ejecuta de forma asincrona');
       this.tareas = datos;
     });
 
-  }// ngOnInit
+  }// cargarTareas
+
 
 }// TareasComponent
