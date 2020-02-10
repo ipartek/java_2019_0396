@@ -35,10 +35,14 @@ export class TareasService implements ITareasService {
 
     return this.http.put<Tarea>(url, tarea);
 
-  }
+  }// modificar
+
   eliminar(id: number): Observable<Tarea> {
-    console.debug('');
-  }
+    const url = `http://localhost:3000/tareas/${id}`;
+    console.debug('DELETE %s', url);
+    return this.http.delete<Tarea>(url);
+
+  }// eliminar
 
 
 }// TareasService

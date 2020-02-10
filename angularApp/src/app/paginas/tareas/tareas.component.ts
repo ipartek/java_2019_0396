@@ -26,13 +26,27 @@ export class TareasComponent implements OnInit {
 
 
   editarEstado(tarea: Tarea) {
-    console.debug('click %o', tarea);
+    console.debug('click checkbox %o', tarea);
     tarea.completada = !tarea.completada;
 
     this.servicioTarea.modificar(tarea).subscribe( () => this.cargarTareas() );
 
 
   }// editarEstado
+
+
+  eliminar(tarea: Tarea) {
+    console.debug('click Eliminar %o', tarea);
+
+    if ( confirm('¿Estas seguro?') ) {
+      console.trace('Confirmado eliminacion');
+      this.servicioTarea.eliminar( tarea.id ).subscribe( () => this.cargarTareas() );
+
+    } else {
+      console.trace('Cancelado eliminacion');
+    }
+
+  }// eliminar
 
 
   /**

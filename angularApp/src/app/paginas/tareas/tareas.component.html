@@ -4,8 +4,8 @@
 
 <ul>
     <li *ngFor="let tarea of tareas">
-        <input type="checkbox" [checked]="tarea.completada" (click)="editarEstado(tarea)">
-        <b>{{tarea.id}}</b>        
+        <input type="checkbox" [checked]="tarea.completada" (click)="editarEstado(tarea)">       
         <span class="titulo {{ (tarea.completada) ? 'completada' : '' }}">{{tarea.titulo}}</span>
+        <button (click)="eliminar(tarea)" class="text-danger">Eliminar</button>
     </li>
 </ul>

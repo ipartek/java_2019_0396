@@ -9,16 +9,6 @@
       "id": 2,
       "titulo": "Crear Modelo con interfaz",
       "completada": true
-    },
-    {
-      "id": 3,
-      "titulo": "Tomar Cafe y descanso a las 10:30",
-      "completada": false
-    },
-    {
-      "id": 4,
-      "titulo": "Crear Provider",
-      "completada": false
     }
   ],
   "colores": [
