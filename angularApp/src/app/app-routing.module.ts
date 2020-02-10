@@ -13,6 +13,7 @@ import { RecetasComponent } from './paginas/recetas/recetas.component';
 import { Error404Component } from './paginas/error404/error404.component';
 import { SaludarComponent } from './paginas/saludar/saludar.component';
 import { ComparadorComponent } from './paginas/comparador/comparador.component';
+import { TareasComponent } from './paginas/tareas/tareas.component';
 
 /**
  * Definir las rutas la app de angular
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'filtros', component: FiltrosComponent},
   { path: 'recetas', component: RecetasComponent},
   { path: 'comparador', component: ComparadorComponent},
+  { path: 'tareas', component: TareasComponent},
   //  : sirven para indicar que es un parametro
   { path: 'saludar/:pNombre', component: SaludarComponent},
   { path: '**', component: Error404Component},
@@ -85,7 +87,12 @@ export const RUTAS =  [
       'ruta' : '/recetas',
       'nombre' : 'Recetas',
       'icono' : ''
-  }
+  },
+  {
+    'ruta' : '/tareas',
+    'nombre' : 'Tareas',
+    'icono' : ''
+}
 ];
 
 @NgModule({
