@@ -10,10 +10,12 @@ import { TareasService } from 'src/app/services/tareas.service';
 export class TareasComponent implements OnInit {
 
   tareas: Array<Tarea>;
+  tituloNuevo: string;
 
   constructor( private servicioTarea: TareasService ) {
     console.trace('TareasComponent constructor');
     this.tareas = []; // incializar el array
+    this.tituloNuevo = '';
 
   }// constructor
 
@@ -47,6 +49,23 @@ export class TareasComponent implements OnInit {
     }
 
   }// eliminar
+
+  nuevaTarea(): void {
+    console.debug('click nueva tarea %s', this.tituloNuevo );
+
+    // crear objeto Tarea
+    const tNueva = new Tarea();
+    tNueva.titulo = this.tituloNuevo;
+    console.debug(tNueva);
+
+    this.servicioTarea.crear(tNueva).subscribe( data => {
+      console.debug('Nueva Tarea creada en json-server %o', data);
+      this.tituloNuevo = '';
+      this.cargarTareas();
+    });
+
+
+  }// nuevaTarea
 
 
   /**

@@ -2,13 +2,33 @@
   "tareas": [
     {
       "id": 1,
-      "titulo": "crear datos en json",
-      "completada": false
+      "titulo": "Entenderlo, depurar y consola",
+      "completada": true
     },
     {
       "id": 2,
-      "titulo": "Crear Modelo con interfaz",
-      "completada": true
+      "titulo": "Mejorar UI, mostrando mensajes",
+      "completada": false
+    },
+    {
+      "id": 3,
+      "titulo": "El eliminar mostrar al usuario ID y titulo de la tarea eliminada",
+      "completada": false
+    },
+    {
+      "id": 4,
+      "titulo": "Mejorar diseño",
+      "completada": false
+    },
+    {
+      "id": 5,
+      "titulo": "comprobar que titulo tarea nueva > 1",
+      "completada": false
+    },
+    {
+      "id": 6,
+      "titulo": "¿ Que pasa si paramos jon-server?",
+      "completada": false
     }
   ],
   "colores": [

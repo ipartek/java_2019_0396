@@ -1,6 +1,11 @@
 <h2>Tareas</h2>
 <p>Ejemplo de Provider o Servicio para hacer un CRUD completo, contra un servicio Rest.</p>
 
+<div>
+    <input type="text" [(ngModel)]="tituloNuevo" >
+    <button (click)="nuevaTarea()">Crear</button>
+</div>
+
 
 <ul>
     <li *ngFor="let tarea of tareas">

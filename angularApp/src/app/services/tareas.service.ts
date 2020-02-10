@@ -25,9 +25,16 @@ export class TareasService implements ITareasService {
   detalle(id: number): Observable<Tarea> {
     throw new Error("Method not implemented.");
   }
+
   crear(tarea: Tarea): Observable<Tarea> {
-    throw new Error("Method not implemented.");
-  }
+
+    const url = `http://localhost:3000/tareas/`;
+    console.debug('POST %s tarea %o', url, tarea);
+    return this.http.post<Tarea>(url, tarea);
+
+  }// crear
+
+
   modificar(tarea: Tarea): Observable<Tarea> {
 
     const url = `http://localhost:3000/tareas/${tarea.id}`;
