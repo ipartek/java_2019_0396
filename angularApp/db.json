@@ -2,33 +2,28 @@
   "tareas": [
     {
       "id": 1,
-      "titulo": "Entenderlo, depurar y consola",
+      "titulo": "Entenderlo, depurar haber si lo cambia",
       "completada": true
     },
     {
       "id": 2,
       "titulo": "Mejorar UI, mostrando mensajes",
-      "completada": false
+      "completada": true
     },
     {
       "id": 3,
       "titulo": "El eliminar mostrar al usuario ID y titulo de la tarea eliminada",
-      "completada": false
+      "completada": true
     },
     {
       "id": 4,
-      "titulo": "Mejorar diseño",
+      "titulo": "Mejorar diseño si es necesario",
       "completada": false
     },
     {
       "id": 5,
       "titulo": "comprobar que titulo tarea nueva > 1",
-      "completada": false
-    },
-    {
-      "id": 6,
-      "titulo": "¿ Que pasa si paramos jon-server?",
-      "completada": false
+      "completada": true
     }
   ],
   "colores": [
