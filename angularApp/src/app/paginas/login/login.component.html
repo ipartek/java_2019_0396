@@ -44,13 +44,13 @@
         <h3>FormControl para <b>pass</b></h3>
         <a href="https://angular.io/api/forms/FormControl" target="_blank">Documentacion</a>
 
-        <pre>valid: {{ formulario.controls.pass.valid | json }}</pre>      
-        <pre>invalid: {{ formulario.controls.pass.invalid | json }}</pre>      
-        <pre>dirty: {{ formulario.controls.pass.dirty | json }}</pre>      
-        <pre>pristine: {{ formulario.controls.pass.pristine | json }}</pre>      
-        <pre>touched: {{ formulario.controls.pass.touched | json }}</pre>      
-        <pre>untouched: {{ formulario.controls.pass.untouched | json }}</pre>      
-        <pre>Errors: {{ formulario.controls.pass.errors | json }}</pre>      
+        <pre>valid: <b>{{ formulario.controls.pass.valid | json }}</b></pre>      
+        <pre>invalid: <b>{{ formulario.controls.pass.invalid | json }}</b></pre>      
+        <pre>dirty: el usuario ha modificado el valor del control <b>{{ formulario.controls.pass.dirty | json }}</b></pre>      
+        <pre>pristine: el valor del control no ha sido cambiado por el usuario <b>{{ formulario.controls.pass.pristine | json }}</b></pre>      
+        <pre>touched: el usuario ha tocado el control lanzando un evento <code>blur</code> al salir <b>{{ formulario.controls.pass.touched | json }}</b></pre>      
+        <pre>untouched: el usuario no ha tocado y salido del control lanzando ningún evento <code>blur</code> <b>{{ formulario.controls.pass.untouched | json }}</b></pre>      
+        <pre>Errors: errores de validaciones <b>{{ formulario.controls.pass.errors | json }}</b></pre>      
          
     </div>
     <!-- /.col 2-->
