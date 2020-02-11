@@ -1,0 +1,30 @@
+<h1>Iniciar Session</h1>
+<h2>Formulario Reactivo</h2>
+<p>Acordarse de importar <code>ReactiveFormsModule</code></p>
+
+<div class="row">
+
+    <div class="col">
+
+        <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
+
+            <input type="text" formControlName="nombre" />
+            <br>
+            <input type="password" formControlName="pass" />
+            <br>
+
+            <input type="submit" [disabled]="formulario.invalid" value="Enviar">
+        </form>
+
+
+    </div>
+    <!-- /.col 1-->
+
+    <div class="col">
+        <pre>{{ formulario.value | json }}</pre>
+        <pre>{{ formulario.status | json }}</pre>       
+    </div>
+    <!-- /.col 2-->
+
+</div>
+<!-- /.row -->

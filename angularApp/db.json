@@ -13,7 +13,7 @@
     {
       "id": 3,
       "titulo": "El eliminar mostrar al usuario ID y titulo de la tarea eliminada",
-      "completada": true
+      "completada": false
     },
     {
       "id": 4,
@@ -23,7 +23,7 @@
     {
       "id": 5,
       "titulo": "comprobar que titulo tarea nueva > 1",
-      "completada": true
+      "completada": false
     }
   ],
   "colores": [

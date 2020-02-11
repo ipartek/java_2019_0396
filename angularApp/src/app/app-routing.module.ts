@@ -14,6 +14,9 @@ import { Error404Component } from './paginas/error404/error404.component';
 import { SaludarComponent } from './paginas/saludar/saludar.component';
 import { ComparadorComponent } from './paginas/comparador/comparador.component';
 import { TareasComponent } from './paginas/tareas/tareas.component';
+import { PrivadoComponent } from './paginas/privado/privado.component';
+import { LoginGuard } from './guards/login.guard';
+import { LoginComponent } from './paginas/login/login.component';
 
 /**
  * Definir las rutas la app de angular
@@ -31,8 +34,12 @@ const routes: Routes = [
   { path: 'recetas', component: RecetasComponent},
   { path: 'comparador', component: ComparadorComponent},
   { path: 'tareas', component: TareasComponent},
+  { path: 'login', component: LoginComponent},
   //  : sirven para indicar que es un parametro
   { path: 'saludar/:pNombre', component: SaludarComponent},
+
+  // vamos a proteger esta ruta con una guarda
+  { path: 'privado', component: PrivadoComponent , canActivate: [LoginGuard] },
   { path: '**', component: Error404Component},
 
 ];
@@ -88,11 +95,21 @@ export const RUTAS =  [
       'nombre' : 'Recetas',
       'icono' : ''
   },
-  {
-    'ruta' : '/tareas',
-    'nombre' : 'Tareas',
-    'icono' : ''
-}
+    {
+        'ruta' : '/tareas',
+        'nombre' : 'Tareas',
+        'icono' : ''
+    },
+    {
+        'ruta' : '/privado',
+        'nombre' : 'Privado',
+        'icono' : ''
+    },
+    {
+        'ruta' : '/login',
+        'nombre' : 'Iniciar Sesión',
+        'icono' : ''
+    }
 ];
 
 @NgModule({

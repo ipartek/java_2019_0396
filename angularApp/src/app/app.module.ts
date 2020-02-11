@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +25,8 @@ import { Error404Component } from './paginas/error404/error404.component';
 import { SaludarComponent } from './paginas/saludar/saludar.component';
 import { ComparadorComponent } from './paginas/comparador/comparador.component';
 import { TareasComponent } from './paginas/tareas/tareas.component';
+import { PrivadoComponent } from './paginas/privado/privado.component';
+import { LoginComponent } from './paginas/login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,12 +50,15 @@ import { TareasComponent } from './paginas/tareas/tareas.component';
     Error404Component,
     SaludarComponent,
     ComparadorComponent,
-    TareasComponent
+    TareasComponent,
+    PrivadoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, // Modulo para llamadas por HTTP
-    FormsModule,      // Modulo para usar Formularios
+    HttpClientModule,     // Modulo para llamadas por HTTP
+    FormsModule,          // Modulo para usar Formularios con BanaInABox
+    ReactiveFormsModule,  // Modulo para Formrulario Reactivos
     AppRoutingModule
   ],
   providers: [],
