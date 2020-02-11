@@ -6,14 +6,32 @@
 
     <div class="col">
 
+        <pre>{{ formulario.value | json }}</pre>             
+        <pre>{{ formulario.status | json }}</pre>      
+
         <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
 
-            <input type="text" formControlName="nombre" />
+            <input type="text" formControlName="nombre" 
+                   placeholder="Nombre o Email"
+                   class="form-control"/>
+
+            <small *ngIf="formulario.controls.nombre.invalid && formulario.controls.nombre.dirty"
+                   class="text-danger">Minimo 2 caractes Maximo 100</small>
+
+            <small *ngIf="formulario.controls.nombre.valid"
+                   class="text-success">Nombre correcto</small>       
+
             <br>
-            <input type="password" formControlName="pass" />
+            <input type="password" formControlName="pass" 
+                   placeholder="password"
+                   class="form-control"/>
+            <small *ngIf="formulario.controls.pass.invalid && formulario.controls.pass.dirty"
+                   class="text-danger" >Minimo 6 caractes Maximo 8</small>
             <br>
 
-            <input type="submit" [disabled]="formulario.invalid" value="Enviar">
+            <input type="submit" [disabled]="formulario.invalid" 
+                   class="btn btn-primary btn-block"
+                   value="Enviar">
         </form>
 
 
@@ -21,8 +39,19 @@
     <!-- /.col 1-->
 
     <div class="col">
-        <pre>{{ formulario.value | json }}</pre>
-        <pre>{{ formulario.status | json }}</pre>       
+       
+
+        <h3>FormControl para <b>pass</b></h3>
+        <a href="https://angular.io/api/forms/FormControl" target="_blank">Documentacion</a>
+
+        <pre>valid: {{ formulario.controls.pass.valid | json }}</pre>      
+        <pre>invalid: {{ formulario.controls.pass.invalid | json }}</pre>      
+        <pre>dirty: {{ formulario.controls.pass.dirty | json }}</pre>      
+        <pre>pristine: {{ formulario.controls.pass.pristine | json }}</pre>      
+        <pre>touched: {{ formulario.controls.pass.touched | json }}</pre>      
+        <pre>untouched: {{ formulario.controls.pass.untouched | json }}</pre>      
+        <pre>Errors: {{ formulario.controls.pass.errors | json }}</pre>      
+         
     </div>
     <!-- /.col 2-->
 
