@@ -1,52 +1,64 @@
-.container{
-    background-color: plum;
+.container {    
+    background: url('/assets/images/background-todo.jpg') no-repeat center center fixed;  
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    min-height: 80vh;
 }
 
 
+
 .container-tareas {
+
     width: 70vw;
     margin: auto;
-    background-color: pink;
+    background-color: rgba(255,255,255,0.3);
     padding: 20px;
 
     .crear {
         display: flex;
-        margin-bottom: 1rem;
+        margin-bottom: 1rem;       
+    }
 
-        input{
-            width: 70%;
-            margin-right: 2%;
-        }
+    input[type="checkbox"] {
+        width: 30px;
+        height: 30px;
+    }    
 
-        buttton {
-            width: 20;
+
+    ul {
+    
+        padding: 0;
+
+        li {
+
+            list-style: none;
+            display: flex;
+            margin-bottom: 10px;
+                
+            input[type="text"] {
+                flex-grow: 2;
+                margin-right: 10px;
+            }
+        
+            input[type="text"].titulo{
+                font-weight: 500;
+                margin-left: 10px;
+            }
+        
+            input[type="text"].completada{
+                text-decoration: line-through;
+                font-weight: 100;
+                color: rgb(119, 113, 113);
+            }
+        
         }
     }
+    
 
 }
 
-li {
 
-    list-style: none;
-    display: flex;
 
-    &:hover {
-        background-color: rgba(255,0,0, 0.3);
-    }
-
-    input[type="text"] {
-        flex-grow: 2;
-    }
-
-    input[type="text"].titulo{
-        font-weight: 500;
-        margin-left: 10px;
-    }
-
-    input[type="text"].completada{
-        text-decoration: line-through;
-        font-weight: 100;
-        color: rgb(119, 113, 113);
-    }
-
-}

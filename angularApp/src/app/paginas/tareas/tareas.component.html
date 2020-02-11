@@ -14,15 +14,15 @@
 
     <div class="container-tareas">
 
-        <div class="crear">
-            <input type="text" [(ngModel)]="tituloNuevo" class="form-control" placeholder="Descripción de la nueva tarea" >
-            <button (click)="nuevaTarea()" class="btn btn-primary">Crear</button>
+        <div class="row mb-3 p-2">
+            <input type="text" [(ngModel)]="tituloNuevo" class="col-7 mr-3 form-control" placeholder="Descripción de la nueva tarea" >
+            <button (click)="nuevaTarea()" class="col-4 btn btn-block btn-primary">Crear</button>
         </div>
 
 
         <ul>
             <li *ngFor="let tarea of tareas" (click)="modoEdicion = true">           
-                     
+
                 <input type="checkbox" [checked]="tarea.completada" (click)="editarEstado(tarea)">       
                 <input type="text" [(ngModel)]="tarea.titulo" 
                        (blur)="cambiarTitulo(tarea); modoEdicion = false"
