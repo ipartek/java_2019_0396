@@ -99,16 +99,6 @@ export const RUTAS =  [
         'ruta' : '/tareas',
         'nombre' : 'Tareas',
         'icono' : ''
-    },
-    {
-        'ruta' : '/privado',
-        'nombre' : 'Privado',
-        'icono' : ''
-    },
-    {
-        'ruta' : '/login',
-        'nombre' : 'Iniciar Sesión',
-        'icono' : ''
     }
 ];
 

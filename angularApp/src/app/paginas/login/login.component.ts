@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../../services/usuario.service';
+import { Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +12,19 @@ export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor( private builder: FormBuilder) {
+  constructor( private router: Router,
+               private builder: FormBuilder,
+               private usuarioService: UsuarioService
+             ) {
+
     console.trace('LoginComponent constructor');
 
     // construir formulario
     this.formulario = this.builder.group({
 
        // definir los FormControl == inputs [ value, validaciones ]
-      nombre : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100) ]],
-      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8) ]]
+      nombre : ['admin', [Validators.required, Validators.minLength(2), Validators.maxLength(100) ]],
+      pass: ['admin123', [Validators.required, Validators.minLength(6), Validators.maxLength(8) ]]
 
     });
 
@@ -34,7 +40,23 @@ export class LoginComponent implements OnInit {
   enviar( values: any ) {
     console.trace('Submit formulario %o', values);
 
+    const nombre = values.nombre;
+    const password = values.pass;
+    const uLogeado = this.usuarioService.login(nombre, password);
+
+    if ( uLogeado ) {
+      console.trace('Usuario logeado con exito %o', uLogeado);
+      this.router.navigate(['privado']);
+    } else {
+      console.warn('Usuario NO logeado');
+      // TODO cambiar alert
+      alert('Por favor prueba de nuevo a logearte');
+    }
+
+
   }// enviar
+
+
 
 
 }// LoginComponent

@@ -23,10 +23,16 @@ export class UsuarioService implements IUsuarioService {
     return this.isLogged;
   }
 
+  /**
+   * Busca el usuario por nombre y password
+   * @param nombre 
+   * @param password 
+   * @return Usuario con datos si existe, undefined si no encuentra
+   */
   login(nombre: string, password: string): Usuario {
     console.trace('UsuarioService login nombre %s password %s', nombre, password);
     const NOMBRE = 'admin';
-    const PASS = 'admin';
+    const PASS = 'admin123';
     let usuarioBuscar: Usuario; // si no enta en el if es "undefined"
 
     if ( NOMBRE === nombre && PASS === password ) {
@@ -47,7 +53,7 @@ export class UsuarioService implements IUsuarioService {
     return usuarioBuscar;
   }// login
 
-  cerrarSesion(idUsuario: number) {
+  cerrarSesion() {
     console.trace('UsuarioService cerrarSesion');
     this.isLogged = false;
   }
