@@ -12,15 +12,15 @@
 
             <!-- rutas si el usuario esta loegado o no -->
             <li class="nav-item">
-              <a *ngIf="!isLogged" [routerLink]="'/login'" routerLinkActive="" class="nav-link">Iniciar Sesión</a>
+              <a *ngIf="!usuarioService.estaLogeado()" [routerLink]="'/login'" routerLinkActive="" class="nav-link">Iniciar Sesión</a>
             </li>
 
             <li class="nav-item">
-              <a *ngIf="isLogged" [routerLink]="'/privado'" routerLinkActive="" class="nav-link">Backoffice</a>
+              <a *ngIf="usuarioService.estaLogeado()" [routerLink]="'/privado'" routerLinkActive="" class="nav-link">Backoffice</a>
             </li>
 
             <li class="nav-item">
-              <a *ngIf="isLogged" (click)="salir()" class="nav-link text-danger">Cerrar Sesión</a>
+              <a *ngIf="usuarioService.estaLogeado()" (click)="salir()" class="nav-link text-danger">Cerrar Sesión</a>
             </li>
 
 

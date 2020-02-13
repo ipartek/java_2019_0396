@@ -12,20 +12,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   rutas: Array<any>;
-  isLogged: boolean;
 
   constructor( private router: Router,
                private usuarioService: UsuarioService
               ) {
     console.trace('NavbarComponent constructor');
     this.rutas = RUTAS;
-    this.isLogged = false;
 
   }// constructor
 
   ngOnInit() {
     console.trace('NavbarComponent ngOnInit');
-    this.isLogged = this.usuarioService.estaLogeado();
   }// ngOnInit
 
   salir() {
