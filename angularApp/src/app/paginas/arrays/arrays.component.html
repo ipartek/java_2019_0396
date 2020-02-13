@@ -2,7 +2,32 @@
 
 <div class="row">
     <div class="col">
-        <pre>{{frutas | json }}</pre>
+
+       
+        <div class="p-2 border border-primary">
+            {{options | json}}
+            <div class="form-group">
+                <label for="options">Filtrar por Colores:</label>
+                <div *ngFor="let option of options">
+                    <label>
+                        <input type="checkbox"
+                            name="options"
+                            value="{{option.value}}"
+                            [ngModelOptions]={standAlone:true}
+                            [(ngModel)]="option.checked"/>
+                        {{option.name}}
+                    </label>
+                </div>
+            </div>
+        </div>   
+
+        <ol>
+            <li *ngFor="let f of frutas | frutasPipe : options ">
+                {{ f | json }}
+            </li>
+        </ol>
+
+
     </div>
     <div class="col">
         <p>Precio total: <b>{{total}}</b></p>

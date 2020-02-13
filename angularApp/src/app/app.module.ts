@@ -27,6 +27,7 @@ import { ComparadorComponent } from './paginas/comparador/comparador.component';
 import { TareasComponent } from './paginas/tareas/tareas.component';
 import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginComponent } from './paginas/login/login.component';
+import { FrutasPipe } from './pipes/frutas.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LoginComponent } from './paginas/login/login.component';
     ComparadorComponent,
     TareasComponent,
     PrivadoComponent,
-    LoginComponent
+    LoginComponent,
+    FrutasPipe
   ],
   imports: [
     BrowserModule,

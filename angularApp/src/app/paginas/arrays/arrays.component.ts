@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArraysComponent implements OnInit {
 
+
   frutas: any;
   total: number;
   totalDescuento: number;
@@ -16,13 +17,14 @@ export class ArraysComponent implements OnInit {
   frutasAmarillasPrecio: number;
   fruta1verde: any;
   colores: Array<string>;
+  options: Array<any>;
 
   constructor() {
     console.trace('ArraysComponent constructor');
 
 
-    var numbers = [1, 5, 10, 15];
-    var doubles = numbers.filter((el, index, lista ) => { return el > 5; } );
+    let numbers = [1, 5, 10, 15];
+    let doubles = numbers.filter((el, index, lista ) => { return el > 5; } );
     console.debug('--------------------------------------------------------');
     console.debug(numbers);
     console.debug(doubles);
@@ -36,6 +38,7 @@ export class ArraysComponent implements OnInit {
     this.frutasAmarillasPrecio = 0;
     this.fruta1verde = {};
     this.colores =  [];
+    this.options = [];
 
 
 
@@ -74,12 +77,40 @@ export class ArraysComponent implements OnInit {
     this.frutasAmarillasNombre = this.frutas.filter( el => el.colores.includes('amarillo') ).map( el => el.nombre);
     this.frutasAmarillasPrecio = this.frutas.filter( el => el.colores.indexOf('amarillo') !== -1 ).reduce( (p, c) => p + c.precio , 0);
     this.fruta1verde = this.frutas.find( el => el.colores.indexOf('verde') !== -1 );
+
+    // colores sin repeticion
     this.colores = this.frutas.reduce( (p, c, i, a) => {
         return p.concat(c.colores);
     }, [] ).filter( (el, index, array) => {
         console.debug(el, index, array);
         return array.indexOf(el) === index;
       });
-  }
+    
+
+
+      /* 
+    vamos a mapear un Array<string> para conseguir 
+    la estrcutura deseada para los checkboxes
+  
+
+  colores = [
+    "rojo",
+    "amarillo", 
+    "verde"
+  ];
+
+  options = [
+    {name:'OptionA', value:'1', checked:true},
+    {name:'OptionB', value:'2', checked:false},
+    {name:'OptionC', value:'3', checked:true}
+  ]
+
+  */
+
+    this.options = this.colores.map( el => {
+      return  {name: el , value: el , checked: false};
+    });
+
+  }// ngOnInit
 
 }
