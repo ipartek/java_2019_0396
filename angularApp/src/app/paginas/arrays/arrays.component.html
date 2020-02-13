@@ -5,25 +5,25 @@
 
        
         <div class="p-2 border border-primary">
-            {{options | json}}
             <div class="form-group">
                 <label for="options">Filtrar por Colores:</label>
+                <button (click)="buscar(options)">Buscar</button>
                 <div *ngFor="let option of options">
                     <label>
                         <input type="checkbox"
-                            name="options"
-                            value="{{option.value}}"
-                            [ngModelOptions]={standAlone:true}
-                            [(ngModel)]="option.checked"/>
+                               name="options"
+                               value="{{option.value}}"
+                               [(ngModel)]="option.checked"/>
                         {{option.name}}
                     </label>
                 </div>
             </div>
         </div>   
 
-        <ol>
-            <li *ngFor="let f of frutas | frutasPipe : options ">
-                {{ f | json }}
+        <ol class="list-group">
+            <li *ngFor="let f of frutas" class="list-group-item">
+                {{f.nombre}}
+                <span class="circulo {{c}}" *ngFor="let c of f.colores"></span>
             </li>
         </ol>
 

@@ -9,6 +9,7 @@ export class ArraysComponent implements OnInit {
 
 
   frutas: any;
+  frutasOriginal: any;
   total: number;
   totalDescuento: number;
   aSoloNombres: Array<string>;
@@ -47,6 +48,9 @@ export class ArraysComponent implements OnInit {
       {'nombre': 'pera', 'precio': 3.50, 'descuento': 10, 'colores': ['amarillo', 'verde']},
       {'nombre': 'manzana', 'precio': 1.99, 'descuento': 50, 'colores': ['amarillo', 'verde', 'roja']}
     ];
+
+    this.frutasOriginal = this.frutas.slice(); // crear una copiar exacata del array, pero sin compartir memoria
+
   }
 
   ngOnInit() {
@@ -112,5 +116,21 @@ export class ArraysComponent implements OnInit {
     });
 
   }// ngOnInit
+
+
+  buscar( options) {
+
+    console.debug('buscar %o', options);
+    this.frutas = this.frutasOriginal.slice();
+    const coloresSeleccionados = this.options.filter( el => el.checked ).map( el => el.value);
+    console.debug('coloresSeleccionados %o', coloresSeleccionados);
+    if ( coloresSeleccionados.length > 0 ) {  // si no hay nada cheked apra que buscar
+      this.frutas = this.frutas.filter( el => {
+        console.debug('filtrando frutas');
+        return el.colores.find( color => coloresSeleccionados.indexOf(color) !== -1 );
+      });
+    }
+
+  }// buscar
 
 }
