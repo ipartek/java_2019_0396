@@ -17,6 +17,7 @@ import { TareasComponent } from './paginas/tareas/tareas.component';
 import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './paginas/login/login.component';
+import { ComprasComponent } from './paginas/compras/compras.component';
 
 /**
  * Definir las rutas la app de angular
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'comparador', component: ComparadorComponent},
   { path: 'tareas', component: TareasComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'componentes', component: ComprasComponent},
   //  : sirven para indicar que es un parametro
   { path: 'saludar/:pNombre', component: SaludarComponent},
 
@@ -95,11 +97,16 @@ export const RUTAS =  [
       'nombre' : 'Recetas',
       'icono' : ''
   },
-    {
-        'ruta' : '/tareas',
-        'nombre' : 'Tareas',
-        'icono' : ''
-    }
+  {
+    'ruta' : '/componentes',
+    'nombre' : 'Input Output',
+    'icono' : ''
+   },
+   {
+    'ruta' : '/tareas',
+    'nombre' : 'Tareas',
+    'icono' : ''
+   }
 ];
 
 @NgModule({

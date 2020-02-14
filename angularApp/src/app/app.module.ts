@@ -28,6 +28,9 @@ import { TareasComponent } from './paginas/tareas/tareas.component';
 import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginComponent } from './paginas/login/login.component';
 import { FrutasPipe } from './pipes/frutas.pipe';
+import { ComprasComponent } from './paginas/compras/compras.component';
+import { ListadoComponent } from './paginas/compras/listado/listado.component';
+import { DetalleComponent } from './paginas/compras/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { FrutasPipe } from './pipes/frutas.pipe';
     TareasComponent,
     PrivadoComponent,
     LoginComponent,
-    FrutasPipe
+    FrutasPipe,
+    ComprasComponent,
+    ListadoComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,
