@@ -32,6 +32,7 @@ public class PokemonDAO implements IDAO<Pokemon> {
 	@Override
 	public List<Pokemon> getAll() {
 
+		// TODO cambiar por LEFT JOIN
 		String sql = " SELECT p.id 'id_pokemon', p.nombre 'nombre_pokemon', h.nombre 'nombre_habilidad', h.id 'id_habilidad' "
 				+ " FROM pokemon p, pokemon_habilidades ph, habilidad h "
 				+ " WHERE p.id = ph.id_pokemon AND ph.id_hablidad = h.id " + " ORDER BY p.id DESC LIMIT 500;";

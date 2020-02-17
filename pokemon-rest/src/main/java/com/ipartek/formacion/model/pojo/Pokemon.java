@@ -6,7 +6,11 @@ import java.util.List;
 public class Pokemon {
 
 	private int id;
-	private String nombre;	
+	
+	//TODO validation
+	private String nombre;
+	
+	
 	private List<Habilidad> habilidades;
 	
 	public Pokemon() {
