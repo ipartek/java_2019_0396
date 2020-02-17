@@ -18,6 +18,7 @@ import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './paginas/login/login.component';
 import { ComprasComponent } from './paginas/compras/compras.component';
+import { FormularioComponent } from './paginas/formulario/formulario.component';
 
 /**
  * Definir las rutas la app de angular
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'tareas', component: TareasComponent},
   { path: 'login', component: LoginComponent},
   { path: 'componentes', component: ComprasComponent},
+  { path: 'formulario', component: FormularioComponent},
   //  : sirven para indicar que es un parametro
   { path: 'saludar/:pNombre', component: SaludarComponent},
 
@@ -105,6 +107,11 @@ export const RUTAS =  [
    {
     'ruta' : '/tareas',
     'nombre' : 'Tareas',
+    'icono' : ''
+   },
+   {
+    'ruta' : '/formulario',
+    'nombre' : 'Formulario',
     'icono' : ''
    }
 ];

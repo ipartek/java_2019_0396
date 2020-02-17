@@ -1,13 +1,7 @@
-<h1>Iniciar Session</h1>
-<h2>Formulario Reactivo</h2>
-<p>Acordarse de importar <code>ReactiveFormsModule</code></p>
 
-<div class="row">
-
-    <div class="col">
-
-        <pre>{{ formulario.value | json }}</pre>             
-        <pre>{{ formulario.status | json }}</pre>      
+<div class="row justify-content-center mt-5">
+ 
+   <div class="col-4">
 
         <form [formGroup]="formulario" (ngSubmit)="enviar(formulario.value)">
 
@@ -34,26 +28,8 @@
                    value="Enviar">
         </form>
 
+     </div>    
 
-    </div>
-    <!-- /.col 1-->
-
-    <div class="col">
-       
-
-        <h3>FormControl para <b>pass</b></h3>
-        <a href="https://angular.io/api/forms/FormControl" target="_blank">Documentacion</a>
-
-        <pre>valid: <b>{{ formulario.controls.pass.valid | json }}</b></pre>      
-        <pre>invalid: <b>{{ formulario.controls.pass.invalid | json }}</b></pre>      
-        <pre>dirty: el usuario ha modificado el valor del control <b>{{ formulario.controls.pass.dirty | json }}</b></pre>      
-        <pre>pristine: el valor del control no ha sido cambiado por el usuario <b>{{ formulario.controls.pass.pristine | json }}</b></pre>      
-        <pre>touched: el usuario ha tocado el control lanzando un evento <code>blur</code> al salir <b>{{ formulario.controls.pass.touched | json }}</b></pre>      
-        <pre>untouched: el usuario no ha tocado y salido del control lanzando ningún evento <code>blur</code> <b>{{ formulario.controls.pass.untouched | json }}</b></pre>      
-        <pre>Errors: errores de validaciones <b>{{ formulario.controls.pass.errors | json }}</b></pre>      
-         
-    </div>
-    <!-- /.col 2-->
-
+   
 </div>
 <!-- /.row -->

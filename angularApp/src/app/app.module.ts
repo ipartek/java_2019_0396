@@ -31,6 +31,7 @@ import { FrutasPipe } from './pipes/frutas.pipe';
 import { ComprasComponent } from './paginas/compras/compras.component';
 import { ListadoComponent } from './paginas/compras/listado/listado.component';
 import { DetalleComponent } from './paginas/compras/detalle/detalle.component';
+import { FormularioComponent } from './paginas/formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { DetalleComponent } from './paginas/compras/detalle/detalle.component';
     FrutasPipe,
     ComprasComponent,
     ListadoComponent,
-    DetalleComponent
+    DetalleComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
