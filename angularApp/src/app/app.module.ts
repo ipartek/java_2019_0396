@@ -32,6 +32,7 @@ import { ComprasComponent } from './paginas/compras/compras.component';
 import { ListadoComponent } from './paginas/compras/listado/listado.component';
 import { DetalleComponent } from './paginas/compras/detalle/detalle.component';
 import { FormularioComponent } from './paginas/formulario/formulario.component';
+import { MensajeComponent } from './componentes/mensaje/mensaje.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { FormularioComponent } from './paginas/formulario/formulario.component';
     ComprasComponent,
     ListadoComponent,
     DetalleComponent,
-    FormularioComponent
+    FormularioComponent,
+    MensajeComponent
   ],
   imports: [
     BrowserModule,
