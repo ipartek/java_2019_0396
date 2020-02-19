@@ -158,7 +158,44 @@ public class PokemonDAO implements IDAO<Pokemon> {
 
 	@Override
 	public Pokemon create(Pokemon pojo) throws Exception {
-		// TODO Auto-generated method stub
+		
+		Connection con = null;
+		try {
+			con = ConnectionManager.getConnection();
+			con.setAutoCommit(false);
+			// insert en tabla pokemon
+			// obtener id generado
+			
+			ArrayList<Habilidad> habilidades = (ArrayList<Habilidad>) pojo.getHabilidades();
+			for (Habilidad habilidad : habilidades) {
+			
+				// por cada habilidad, si es que las tiene			
+				// insert tabla pokemon-has-habilidades
+				//"insert into pokemon-has-habilidades(id_pokmeon, id_habilidad) VALUES (?,?)";
+				
+				habilidad.getId();
+				
+				
+			}
+			
+			//SI TODO FUNCIONA BIEN			
+			con.commit();
+		} catch (Exception e) {
+			
+			con.rollback();
+			e.printStackTrace();
+			
+			throw new Exception("nombre duplicado");
+			
+		}finally {
+			
+			if ( con != null ) {
+				con.close();
+			}			
+			
+		}
+
+		
 		return null;
 	}
 
