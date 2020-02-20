@@ -1,16 +1,49 @@
-
-
 <div *ngIf="mensaje" class="alert alert-primary" role="alert">
-    {{mensaje}}
+  {{mensaje}}
 </div>
 
-<div class="card" style="width: 18rem;">
-    <img src="{{pokemon.imagen}}" class="card-img-top" alt="imagen pokemon">
-    <div class="card-body">
-      <h5 class="card-title">{{pokemon.id}} {{pokemon.nombre}}</h5>
-      <ol>
-        <h3>Habiliades</h3>
-        <li *ngFor="let h of pokemon.habilidades">{{h}}</li>
-      </ol>      
+
+
+<div class="row">  
+  
+  <div class="card" style="width: 18rem;">
+      <img src="{{pokemon.imagen}}" class="card-img-top" alt="imagen pokemon">
+      <div class="card-body">
+        <h5 class="card-title">{{pokemon.id}} {{pokemon.nombre}}</h5>
+        <ol>
+          <h3>Habiliades</h3>
+          <li *ngFor="let h of pokemon.habilidades">{{h}}</li>
+        </ol>      
+      </div>
     </div>
+
+
+  <div class="col">
+    <h3>Formulario</h3>
+    {{ formulario.value | json }}
+    {{ formulario.status | json }}
+
+    <form [formGroup]="formulario" >
+      
+      <input type="text" formControlName="nombre" >
+
+      Selecciona habilidades: 
+
+      <div *ngFor="let option of options">
+        <label>
+            <input type="checkbox"
+                   name="options"
+                   (change)="checkCambiado(option)"
+                   value="{{option.id}}"
+            />
+            {{option.nombre}}
+        </label>
+    </div>
+
+
+    </form>
+
   </div>
+
+</div>
+

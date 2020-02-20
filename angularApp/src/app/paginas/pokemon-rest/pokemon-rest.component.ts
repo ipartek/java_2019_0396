@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../../model/pokemon';
 import { PokemonService } from '../../services/pokemon.service';
+import { FormsModule, FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-pokemon-rest',
@@ -11,14 +12,37 @@ export class PokemonRestComponent implements OnInit {
 
   pokemon: Pokemon;
   mensaje: string;
+  habilidades: Array<any>;
+  formulario: FormGroup;
+  formHabilidades: FormArray;
 
-  constructor( private pokemonService: PokemonService) {
+
+  options = [
+    {nombre: 'impasible', id: '1', checked: false},
+    {nombre: 'rayos', id: '2', checked: false},
+    {nombre: 'oloroso', id: '3', checked: false}
+  ];
+
+  // map habilidades del serviucio rest a options para checks
+  /* this.habilidades.map ( el => {
+                                    nombre: el.nombre,
+                                    id: el.id,
+                                    checked: false
+                                  });
+  */
+
+
+  constructor( private pokemonService: PokemonService,
+               private fb: FormBuilder
+              ) {
 
     console.trace('PokemonRestComponent constructor');
     this.mensaje = '';
     this.pokemon = new Pokemon('');
    // this.pokemon.nombre = '';  // setter
     console.debug(this.pokemon);
+    this.crearFormulario();
+
 
   }
 
@@ -67,8 +91,56 @@ export class PokemonRestComponent implements OnInit {
       }
     );
 
+  }// ngOnInit
 
 
+  private crearFormulario() {
+
+    this.formulario = this.fb.group({
+      id: new FormControl(0),
+      nombre: new FormControl('',
+                              Validators.compose(
+                                  [
+                                    Validators.required,
+                                    Validators.minLength(2),
+                                    Validators.maxLength(50)
+                                  ])
+                              ),
+      habilidades:  this.fb.array( [], // creamos array sin hbailidades
+                                  // [ this.crearFormGroupHabilidad() ] <- meter habilidades segun se contruye
+                                  Validators.compose(
+                                    [
+                                      Validators.required,
+                                      Validators.minLength(1)
+                                    ])
+                                )
+    });
+
+    this.formHabilidades = this.formulario.get('habilidades') as FormArray;
+
+  }// crearFormulario
+
+
+  private crearFormGroupHabilidad(): FormGroup {
+    return this.fb.group({
+              id: new FormControl(0),
+              nombre: new FormControl('')
+            });
   }
+
+  checkCambiado( option: any ) {
+
+    option.checked = !option.checked;          // TODO ver porque no cambia
+    console.debug('checkCambiado %o', option);
+
+    const habilidad = this.crearFormGroupHabilidad();
+    habilidad.get('id').setValue( option.id );
+    habilidad.get('nombre').setValue( option.nombre );
+
+    this.formHabilidades.push(habilidad);
+
+
+  }// checkCambiado
+
 
 }
