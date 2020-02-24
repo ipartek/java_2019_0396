@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Noticia } from 'src/app/model/noticia.model';
+import { NOTICIAS } from 'src/app/noticias';
 
 @Component({
   selector: 'app-arrays',
@@ -19,6 +21,7 @@ export class ArraysComponent implements OnInit {
   fruta1verde: any;
   colores: Array<string>;
   options: Array<any>;
+  noticias: Array<Noticia>;
 
   constructor() {
     console.trace('ArraysComponent constructor');
@@ -26,6 +29,7 @@ export class ArraysComponent implements OnInit {
 
     let numbers = [1, 5, 10, 15];
     let doubles = numbers.filter((el, index, lista ) => { return el > 5; } );
+    this.noticias = [];
     console.debug('--------------------------------------------------------');
     console.debug(numbers);
     console.debug(doubles);
@@ -55,6 +59,17 @@ export class ArraysComponent implements OnInit {
 
   ngOnInit() {
     console.trace('ArraysComponent ngOnInit');
+
+    this.noticias = NOTICIAS.page.items.map( el => {
+      const noticia = new Noticia();
+      noticia.id = +el.id; // usarmos + para parseInt
+      noticia.cuerpo = el.text;
+      noticia.fecha = el.publicationDate;
+      noticia.imagen = el.image;
+      noticia.resumen = el.summary;
+      noticia.titulo = el.title;
+      return noticia;
+    });
 
     // this.frutas.forEach( el => this.total += el.precio );
 
